@@ -30,7 +30,7 @@ namespace BookAPI.Controllers.BookData
         }
 
 
-        private async Task<BookdataFrAPI> SearchBooksAsync(string query, int maxResults)
+        public async Task<BookdataFrAPI> SearchBooksAsync(string query, int maxResults)
         {
             using (var client = new HttpClient())
             {
@@ -51,8 +51,9 @@ namespace BookAPI.Controllers.BookData
             }
         }
         //Save data to SQL
-        private async Task ProcessBookDataAsync(BookdataFrAPI bookData)
+        public async Task ProcessBookDataAsync(BookdataFrAPI bookData1)
         {
+            BookdataFrAPI bookData = bookData1;
             if (bookData.Items != null)
             {
                 foreach (var item in bookData.Items)
@@ -69,24 +70,41 @@ namespace BookAPI.Controllers.BookData
                     //Thêm tác giả
                     foreach (var author in item.VolumeInfo.Authors)
                     {
-                        Author authortmp =  GetAuthorByName(author.AuthorName);
+                        Author authortmp =  await GetAuthorByName(author);
                         if (authortmp == null)
                         {
-                            authortmp = new Author { AuthorName = author.AuthorName };
+                            authortmp = new Author { AuthorName = author };
                             AddAuthor(authortmp);
                         }
+                        book.AuthorID = authortmp.ID;
                         book.Author = authortmp;
                     }
 
                     //Thêm nhà xuất bản
-                    var publisher = GetPublisherByName(item.VolumeInfo.Publisher);
+                    var publisherTask = GetPublisherByName(item.VolumeInfo.Publisher);
+                    var publisher = await publisherTask;
                     if (publisher == null)
                     {
                         publisher = new Publisher { PublisherName = item.VolumeInfo.Publisher };
                         AddPublisher(publisher);
                     }
+                    book.PublisherID = publisher.ID;
                     book.Publisher = publisher;
 
+                    //Thêm thể loại
+
+
+                    foreach (var categoryTask in item.VolumeInfo.Categories)
+                    {
+                        Category category = await GetCategoryByName(categoryTask);
+                        if (category == null)
+                        {
+                            category = new Category { CategoryName = categoryTask };
+                            AddCategory(category);
+                        }
+                        book.CategoryID = category.ID;
+                        book.Category = category;
+                    }
 
                     AddBook(book);
                     Console.WriteLine($"Added book: {book.Title}");
@@ -98,12 +116,12 @@ namespace BookAPI.Controllers.BookData
         public void AddAuthor(Author author)
         {
             _context.Authors.Add(author);
-             _context.SaveChangesAsync();
+             _context.SaveChanges();
         }
         // Phương thức lấy tác giả theo tên
-        public Author GetAuthorByName(string name)
+        public async Task<Author> GetAuthorByName(string name)
         {
-            return _context.Authors.FirstOrDefault(a => a.AuthorName == name);
+            return await _context.Authors.FirstOrDefaultAsync(a => a.AuthorName == name);
         }
 
         public void AddPublisher(Publisher publisher)
@@ -113,21 +131,21 @@ namespace BookAPI.Controllers.BookData
         }
 
         // Phương thức lấy nhà xuất bản theo tên
-        public Publisher GetPublisherByName(string name)
+        public async Task<Publisher> GetPublisherByName(string name)
         {
-            return  _context.Publishers.FirstOrDefault(p => p.PublisherName == name);
+            return await _context.Publishers.FirstOrDefaultAsync(p => p.PublisherName == name);
         }
 
         // Phương thức thêm sách mới
         public void AddBook(Book book)
         {
             _context.Books.Add(book);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
         // Phương thức lấy thể loại theo tên
-        public Category GetCategoryByName(string name)
+        public async Task<Category> GetCategoryByName(string name)
         {
-            return _context.Categories.FirstOrDefault(a => a.CategoryName == name);
+            return await _context.Categories.FirstOrDefaultAsync(a => a.CategoryName == name);
         }
 
         public void AddCategory(Category category)
