@@ -169,6 +169,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\BookData\BookGetDataController.cs" />
     <Compile Include="Controllers\BookData\DatafromAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -184,7 +185,6 @@
     <Compile Include="Models\Publisher.cs" />
     <Compile Include="Models\ReadingHistory.cs" />
     <Compile Include="Models\Review.cs" />
-    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\UserData\" />
     <Folder Include="Views\DatafromAPI\" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,8 @@ namespace BookAPI.Models
             FavoriteBooks = new HashSet<FavoriteBook>();
             ReadingHistories = new HashSet<ReadingHistory>();
             Reviews = new HashSet<Review>();
+            Authors = new HashSet<Author>();
+            Categories = new HashSet<Category>();
         }
 
         public int ID { get; set; }
@@ -22,10 +24,6 @@ namespace BookAPI.Models
         [Required]
         [StringLength(255)]
         public string Title { get; set; }
-
-        public int AuthorID { get; set; }
-
-        public int CategoryID { get; set; }
 
         [Required]
         public string DescriptionB { get; set; }
@@ -41,10 +39,6 @@ namespace BookAPI.Models
         [StringLength(255)]
         public string BookLink { get; set; }
 
-        public virtual Author Author { get; set; }
-
-        public virtual Category Category { get; set; }
-
         public virtual Publisher Publisher { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -55,5 +49,11 @@ namespace BookAPI.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Author> Authors { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

@@ -58,59 +58,146 @@ namespace BookAPI.Controllers.BookData
             {
                 foreach (var item in bookData.Items)
                 {
-                    //khởi tạo đối tượng sách
+                    // Khởi tạo đối tượng sách
                     var book = new Book
                     {
                         Title = item.VolumeInfo.Title,
-                        DescriptionB = item.VolumeInfo.Description,
-                        PublishedDate = item.VolumeInfo.PublishedDate,
-                        BookLink = item.VolumeInfo.InfoLink,
-                        CoverImage = item.VolumeInfo.ImageLinks?.Thumbnail
                     };
-                    //Thêm tác giả
-                    foreach (var author in item.VolumeInfo.Authors)
+                    if (item.VolumeInfo.Description==null)
                     {
-                        Author authortmp =  await GetAuthorByName(author);
+                        book.DescriptionB = "Không có mô tả";
+                    }
+                    else
+                    {
+                        book.DescriptionB = item.VolumeInfo.Description;
+
+                    }
+                    if (item.VolumeInfo.PublishedDate == null)
+                    {
+                        book.PublishedDate = "Không có ngày xuất bản";
+                    }
+                    else
+                    {
+                        book.PublishedDate = item.VolumeInfo.PublishedDate;
+                    }
+                    if (item.VolumeInfo.InfoLink == null)
+                    {
+                        book.BookLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Logo_UTC.png/896px-Logo_UTC.png?20131104090648";
+                    }
+                    else
+                    {
+                        book.BookLink = item.VolumeInfo.InfoLink;
+                    }
+                    if (item.VolumeInfo.ImageLinks?.Thumbnail == null)
+                    {
+                        book.CoverImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Logo_UTC.png/896px-Logo_UTC.png?20131104090648";
+                    }
+                    else
+                    {
+                        book.CoverImage = item.VolumeInfo.ImageLinks?.Thumbnail;
+                    }
+
+
+                    // Thêm tác giả
+                    Author authortmp = null;
+                    if (item.VolumeInfo.Authors != null)
+                    {
+                        foreach (var author in item.VolumeInfo.Authors)
+                        {
+                            authortmp = await GetAuthorByName(author);
+                            if (authortmp == null)
+                            {
+                                authortmp = new Author { AuthorName = author, NumberOfWorks = 1 };
+                                AddAuthor(authortmp);
+                            }
+                            else
+                            {
+                                int tmp = authortmp.NumberOfWorks.Value;
+                                authortmp.NumberOfWorks = (tmp + 1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        authortmp = await GetAuthorByName("Không rõ Tác Giả");
                         if (authortmp == null)
                         {
-                            authortmp = new Author { AuthorName = author };
+                            authortmp = new Author { AuthorName = "Không rõ Tác Giả" };
                             AddAuthor(authortmp);
                         }
-                        book.AuthorID = authortmp.ID;
-                        book.Author = authortmp;
+                        
                     }
+                    book.Authors.Add(authortmp);
 
-                    //Thêm nhà xuất bản
-                    var publisherTask = GetPublisherByName(item.VolumeInfo.Publisher);
-                    var publisher = await publisherTask;
-                    if (publisher == null)
+
+                    // Thêm nhà xuất bản
+                    Publisher publisher = null;
+
+                    if (item.VolumeInfo.Publisher != null)
                     {
-                        publisher = new Publisher { PublisherName = item.VolumeInfo.Publisher };
-                        AddPublisher(publisher);
+                        publisher = await GetPublisherByName(item.VolumeInfo.Publisher);
+
+                        if (publisher == null)
+                        {
+                            publisher = new Publisher { PublisherName = item.VolumeInfo.Publisher };
+                            AddPublisher(publisher);
+                        }
                     }
-                    book.PublisherID = publisher.ID;
+                    else
+                    {
+                        publisher = await GetPublisherByName("Không rõ NXB");
+
+                        if (publisher == null)
+                        {
+                            publisher = new Publisher { PublisherName = "Không rõ NXB" };
+                            AddPublisher(publisher);
+                        }
+                    }
                     book.Publisher = publisher;
 
-                    //Thêm thể loại
 
-
-                    foreach (var categoryTask in item.VolumeInfo.Categories)
+                    // Thêm thể loại
+                    Category category = null;
+                    if (item.VolumeInfo.Categories != null)
                     {
-                        Category category = await GetCategoryByName(categoryTask);
-                        if (category == null)
+                        foreach (var categoryName in item.VolumeInfo.Categories)
                         {
-                            category = new Category { CategoryName = categoryTask };
+                            category = await GetCategoryByName(categoryName);
+                            if (category == null)
+                            {
+                                category = new Category { CategoryName = categoryName };
+                                AddCategory(category);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        category = await GetCategoryByName("Không rõ Thể Loại");
+                        if(category == null)
+                        {
+                            category = new Category { CategoryName = "Không rõ Thể Loại" };
                             AddCategory(category);
                         }
-                        book.CategoryID = category.ID;
-                        book.Category = category;
+                        
                     }
+                    book.Categories.Add(category);
 
-                    AddBook(book);
-                    Console.WriteLine($"Added book: {book.Title}");
+                    // Kiểm tra xem sách đã tồn tại chưa
+                    var existingBook = await _context.Books.AnyAsync(b => b.Title == book.Title);
+
+                    if (!existingBook)
+                    {
+                        AddBook(book);
+                        Console.WriteLine($"Added book: {book.Title}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Book already exists: {book.Title}");
+                    }
                 }
             }
         }
+
 
         // Phương thức thêm tác giả mới
         public void AddAuthor(Author author)

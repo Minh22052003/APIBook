@@ -22,7 +22,7 @@ namespace BookAPI.Models
         public string PublisherName { get; set; }
 
         [StringLength(100)]
-        public string Country = "country";
+        public string Country { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books { get; set; }
