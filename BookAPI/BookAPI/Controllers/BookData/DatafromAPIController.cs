@@ -30,12 +30,22 @@ namespace BookAPI.Controllers.BookData
         }
 
 
-        public async Task<BookdataFrAPI> SearchBooksAsync(string query, int maxResults)
+        public async Task<BookdataFrAPI> SearchBooksAsync(int check,string query, int maxResults)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("User-Agent", "C# Book Search");
-                var url = $"https://www.googleapis.com/books/v1/volumes?q={query}&maxResults={maxResults}";
+                var url = $"";
+                if (check == 1)
+                {
+                    //Gọi data theo tên sách
+                    url = $"https://www.googleapis.com/books/v1/volumes?q={query}&maxResults={maxResults}";
+                }
+                else if(check == 2)
+                {
+                    //Gọi data theo chủ đề
+                    url = $"https://www.googleapis.com/books/v1/volumes?q=subject:{query}&maxResults={maxResults}";
+                }
                 var response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)

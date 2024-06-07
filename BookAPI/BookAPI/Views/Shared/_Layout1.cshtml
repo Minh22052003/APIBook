@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quản lý Hệ Thống Thư Viện</title>
+    <link href="~/css/style.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sb-sidenav-dark {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #343a40;
+            color: rgba(255, 255, 255, 0.7);
+            overflow-y: auto;
+        }
+
+            .sb-sidenav-dark .nav-header {
+                padding: 20px;
+                background-color: #23272b;
+                text-align: center;
+            }
+
+                .sb-sidenav-dark .nav-header img {
+                    width: 100px;
+                    margin-bottom: 10px;
+                }
+
+            .sb-sidenav-dark .metismenu {
+                padding: 0;
+                list-style: none;
+                margin: 0;
+            }
+
+            .sb-sidenav-dark .nav-label {
+                padding: 10px 20px;
+                font-size: 14px;
+                color: #c2c7d0;
+            }
+                .sb-sidenav-dark .nav-label.first {
+                    font-size: 20px;
+                    font-weight: bold;
+                    padding: 15px 20px;
+                }
+
+            .sb-sidenav-dark .nav-text {
+                padding: 10px 20px;
+                display: block;
+                color: rgba(255, 255, 255, 0.7);
+                text-decoration: none;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+                .sb-sidenav-dark .nav-text:hover {
+                    background-color: #495057;
+                    color: #fff;
+                }
+
+                .sb-sidenav-dark .nav-text.active {
+                    background-color: #495057;
+                    color: #fff;
+                }
+
+            .sb-sidenav-dark .submenu {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: none;
+                background-color: #3a3f44;
+            }
+
+                .sb-sidenav-dark .submenu li a {
+                    padding: 10px 40px;
+                    display: block;
+                    color: rgba(255, 255, 255, 0.7);
+                    text-decoration: none;
+                    transition: background-color 0.3s, color 0.3s;
+                }
+
+                    .sb-sidenav-dark .submenu li a:hover {
+                        background-color: #495057;
+                        color: #fff;
+                    }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            background-color: #f4f4f4;
+        }
+
+        .has-arrow {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sb-sidenav-dark">
+        <div class="quixnav-scroll">
+            <div class="nav-header">
+                <a class="brand-logo" href="/">
+                    <img class="logo-abbr" src="~/images/logo.jpg" alt="">
+                    <img class="logo-compact" src="~/images/logo_text.png" alt="">
+                </a>
+            </div>
+            <ul class="metismenu" id="menu">
+                <li class="nav-label first">Main Menu</li>
+                <li>
+                    <a class="nav-text has-arrow" aria-expanded="false" onclick="toggleSubMenu(event, 'hethong')">
+                        Quản Lý Hệ Thống
+                    </a>
+                    <ul id="hethong" class="submenu">
+                        <li><a href="~/QlBook/Index">Quản lý Sách</a></li>
+                        <li><a href="/TheLoai/QlTheLoai">Quản lý Thể Loại</a></li>
+                        <li><a href="/TacGia/QlTacGia">Quản lý Tác Giả</a></li>
+                        <li><a href="/NXB/QlNXB">Quản lý Nhà Xuất Bản</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-text has-arrow" aria-expanded="false" onclick="toggleSubMenu(event, 'nguoidung')">
+                        Quản Lý Người Dùng
+                    </a>
+                    <ul id="nguoidung" class="submenu">
+                        <li><a href="/TaiKhoan/QlTK">Quản lý Tài Khoản</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <script>
+        function toggleSubMenu(event, id) {
+            var subMenu = document.getElementById(id);
+            var isVisible = subMenu.style.display === 'block';
+            var allSubMenus = document.getElementsByClassName('submenu');
+            for (var i = 0; i < allSubMenus.length; i++) {
+                allSubMenus[i].style.display = 'none';
+            }
+            if (!isVisible) {
+                subMenu.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

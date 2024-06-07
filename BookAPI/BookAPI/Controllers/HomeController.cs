@@ -19,8 +19,8 @@ namespace BookAPI.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.Title = "Home Page";
-            BookdataFrAPI bookdataFrAPI = await datafromAPIController.SearchBooksAsync("Hello", 10);
-            await datafromAPIController.ProcessBookDataAsync(bookdataFrAPI);
+            //BookdataFrAPI bookdataFrAPI = await datafromAPIController.SearchBooksAsync("Hello", 10);
+            //await datafromAPIController.ProcessBookDataAsync(bookdataFrAPI);
 
             return View();
         }

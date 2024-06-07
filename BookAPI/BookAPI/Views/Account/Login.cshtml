@@ -1,0 +1,106 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Đăng nhập</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            width: 300px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 100px;
+        }
+
+            .login-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .login-container input[type="text"],
+            .login-container input[type="password"] {
+                width: calc(100% - 20px);
+                padding: 8px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+            }
+
+            .login-container input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                border: 0;
+                background: #333;
+                color: #fff;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+                .login-container input[type="submit"]:hover {
+                    background: #555;
+                }
+
+        .register-link a {
+            color: black;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        color:black;
+        }
+        .back-button {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
+
+            .back-button:hover {
+                background-color: #555;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Đăng nhập</h2>
+        <form action="~/Account/login" method="post">
+            <input type="text" name="tenDangNhap" placeholder="Tên đăng nhập" required>
+            <input type="password" name="matKhau" placeholder="Mật khẩu" required>
+            <input type="submit" value="Đăng nhập">
+        </form>
+        <div class="register-link">
+            <p style="color:red">Lưu ý: Chỉ có admin mới có quyền đăng nhập</p>
+            <a class="back-button" href="~/Home/Index">Trở lại</a>
+        </div>
+        <div class="error">
+            @ViewBag.Error
+        </div>
+    </div>
+</body>
+
+</html>
