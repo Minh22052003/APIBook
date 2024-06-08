@@ -1,0 +1,45 @@
+﻿@model WebFont.Models.User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .user-info {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+            .user-info p {
+                margin: 5px 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Profile</h2>
+        <div class="user-info">
+            <p><strong>Username:</strong> @Model.Username</p>
+            <p><strong>Full Name:</strong> @Model.FullName</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Birth Date:</strong> @Model.BirthDate</p>
+            <p><strong>Gender:</strong> @Model.Gender</p>
+            <p><strong>Role:</strong> @Model.Role</p>
+            <p><strong>Status:</strong> @Model.Status</p>
+        </div>
+    </div>
+</body>
+</html>

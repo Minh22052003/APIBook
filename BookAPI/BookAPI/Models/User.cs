@@ -39,6 +39,11 @@ namespace BookAPI.Models
         [StringLength(10)]
         public string Gender { get; set; }
 
+        [StringLength(10)]
+        public string Role { get; set; }
+
+        public int Status { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FavoriteBook> FavoriteBooks { get; set; }
 
