@@ -19,12 +19,13 @@ namespace BookAPI.Controllers.UserData
         {
             _context = new ModelBook();
         }
-        // api/UserGetData/Get_AllUser
+        // api/UserGetData/Get_User?iduser=1
         //Các hàm get
         [HttpGet]
-        public HttpResponseMessage Get_AllUser()
+        public HttpResponseMessage Get_User(int iduser)
         {
             var user = from u in _context.Users
+                       where u.UserID == iduser
                        select new
                        {
                            u.UserID,
@@ -35,6 +36,17 @@ namespace BookAPI.Controllers.UserData
                            u.Gender,
                        };
             return Request.CreateResponse(HttpStatusCode.NotFound, user);
+        }
+        //Gọi API api/UserPostData/Get_UserName
+        [HttpGet]
+        public HttpResponseMessage Get_UserName()
+        {
+            var username = from n in _context.Users
+                            select new
+                            {
+                                n.Username,
+                            };
+            return Request.CreateResponse(HttpStatusCode.OK, username);
         }
     }
 }

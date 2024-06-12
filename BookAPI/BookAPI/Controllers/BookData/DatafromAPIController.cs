@@ -107,96 +107,94 @@ namespace BookAPI.Controllers.BookData
                         book.CoverImage = item.VolumeInfo.ImageLinks?.Thumbnail;
                     }
 
-
-                    // Thêm tác giả
-                    Author authortmp = null;
-                    if (item.VolumeInfo.Authors != null)
-                    {
-                        foreach (var author in item.VolumeInfo.Authors)
-                        {
-                            authortmp = await GetAuthorByName(author);
-                            if (authortmp == null)
-                            {
-                                authortmp = new Author { AuthorName = author, NumberOfWorks = 1 };
-                                AddAuthor(authortmp);
-                            }
-                            else
-                            {
-                                int tmp = authortmp.NumberOfWorks.Value;
-                                authortmp.NumberOfWorks = (tmp + 1);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        authortmp = await GetAuthorByName("Không rõ Tác Giả");
-                        if (authortmp == null)
-                        {
-                            authortmp = new Author { AuthorName = "Không rõ Tác Giả" };
-                            AddAuthor(authortmp);
-                        }
-                        
-                    }
-                    book.Authors.Add(authortmp);
-
-
-                    // Thêm nhà xuất bản
-                    Publisher publisher = null;
-
-                    if (item.VolumeInfo.Publisher != null)
-                    {
-                        publisher = await GetPublisherByName(item.VolumeInfo.Publisher);
-
-                        if (publisher == null)
-                        {
-                            publisher = new Publisher { PublisherName = item.VolumeInfo.Publisher };
-                            AddPublisher(publisher);
-                        }
-                    }
-                    else
-                    {
-                        publisher = await GetPublisherByName("Không rõ NXB");
-
-                        if (publisher == null)
-                        {
-                            publisher = new Publisher { PublisherName = "Không rõ NXB" };
-                            AddPublisher(publisher);
-                        }
-                    }
-                    book.Publisher = publisher;
-
-
-                    // Thêm thể loại
-                    Category category = null;
-                    if (item.VolumeInfo.Categories != null)
-                    {
-                        foreach (var categoryName in item.VolumeInfo.Categories)
-                        {
-                            category = await GetCategoryByName(categoryName);
-                            if (category == null)
-                            {
-                                category = new Category { CategoryName = categoryName };
-                                AddCategory(category);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        category = await GetCategoryByName("Không rõ Thể Loại");
-                        if(category == null)
-                        {
-                            category = new Category { CategoryName = "Không rõ Thể Loại" };
-                            AddCategory(category);
-                        }
-                        
-                    }
-                    book.Categories.Add(category);
-
                     // Kiểm tra xem sách đã tồn tại chưa
                     var existingBook = await _context.Books.AnyAsync(b => b.Title == book.Title);
 
                     if (!existingBook)
                     {
+                        // Thêm tác giả
+                        Author authortmp = null;
+                        if (item.VolumeInfo.Authors != null)
+                        {
+                            foreach (var author in item.VolumeInfo.Authors)
+                            {
+                                authortmp = await GetAuthorByName(author);
+                                if (authortmp == null)
+                                {
+                                    authortmp = new Author { AuthorName = author, NumberOfWorks = 1 };
+                                    AddAuthor(authortmp);
+                                }
+                                else
+                                {
+                                    int tmp = authortmp.NumberOfWorks.Value;
+                                    authortmp.NumberOfWorks = (tmp + 1);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            authortmp = await GetAuthorByName("Không rõ Tác Giả");
+                            if (authortmp == null)
+                            {
+                                authortmp = new Author { AuthorName = "Không rõ Tác Giả" };
+                                AddAuthor(authortmp);
+                            }
+
+                        }
+                        book.Authors.Add(authortmp);
+
+
+                        // Thêm nhà xuất bản
+                        Publisher publisher = null;
+
+                        if (item.VolumeInfo.Publisher != null)
+                        {
+                            publisher = await GetPublisherByName(item.VolumeInfo.Publisher);
+
+                            if (publisher == null)
+                            {
+                                publisher = new Publisher { PublisherName = item.VolumeInfo.Publisher };
+                                AddPublisher(publisher);
+                            }
+                        }
+                        else
+                        {
+                            publisher = await GetPublisherByName("Không rõ NXB");
+
+                            if (publisher == null)
+                            {
+                                publisher = new Publisher { PublisherName = "Không rõ NXB" };
+                                AddPublisher(publisher);
+                            }
+                        }
+                        book.Publisher = publisher;
+
+
+                        // Thêm thể loại
+                        Category category = null;
+                        if (item.VolumeInfo.Categories != null)
+                        {
+                            foreach (var categoryName in item.VolumeInfo.Categories)
+                            {
+                                category = await GetCategoryByName(categoryName);
+                                if (category == null)
+                                {
+                                    category = new Category { CategoryName = categoryName };
+                                    AddCategory(category);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            category = await GetCategoryByName("Không rõ Thể Loại");
+                            if (category == null)
+                            {
+                                category = new Category { CategoryName = "Không rõ Thể Loại" };
+                                AddCategory(category);
+                            }
+
+                        }
+                        book.Categories.Add(category);
                         AddBook(book);
                         Console.WriteLine($"Added book: {book.Title}");
                     }

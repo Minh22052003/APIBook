@@ -3,6 +3,12 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Web.Mvc;
 using BookAPI.Models;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Web.Security;
+using System.Web;
+using System;
 
 namespace BookAPI.Controllers
 {
@@ -30,12 +36,21 @@ namespace BookAPI.Controllers
         {
             if(tenDangNhap == "admin@gmail.com" && matKhau == "2205")
             {
-                return View("Profile");
+                FormsAuthentication.SetAuthCookie(tenDangNhap, false);
+                var roles = new[] { "Admin" };
+                var authTicket = new FormsAuthenticationTicket(
+                    1, tenDangNhap, DateTime.Now, DateTime.Now.AddMinutes(30), false, string.Join(",", roles));
+                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                HttpContext.Response.Cookies.Add(authCookie);
+
+                return RedirectToAction("Profile");
             }
-            //Thêm xác thực
             ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không chính xác.";
             return View();
         }
+
+        [Authorize]
         public ActionResult Profile()
         {
             return View();

@@ -1,0 +1,146 @@
+﻿@model IEnumerable<BookAPI.Models.Author>
+@{
+    ViewBag.Title = "Book List";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <style>
+        table, th, td {
+            border: 1px solid #868585;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tr:nth-child(even) {
+            background-color: white;
+        }
+
+        th.sorted-asc:after {
+            content: ' \25B2'; /* Unicode for up arrow */
+        }
+
+        th.sorted-desc:after {
+            content: ' \25BC'; /* Unicode for down arrow */
+        }
+
+        .tr1 {
+            background-color: lightskyblue !important;
+            position: -webkit-sticky; /* for Safari */
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .top-search {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 4px solid #020d18;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+            .top-search select {
+                flex: 1;
+                height: 46px;
+                background-color: black;
+                font-family: 'Nunito', sans-serif;
+                font-size: 16px;
+                color: #abb7c4;
+                font-weight: 300;
+                border: none;
+                padding: 0 10px;
+                border-right: 1px solid #020d18;
+                text-transform: uppercase;
+                padding-right: 30px;
+            }
+
+            .top-search input[type="text"] {
+                flex: 2;
+                height: 46px;
+                background-color: #233a50;
+                font-family: 'Nunito', sans-serif;
+                font-size: 16px;
+                color: #000;
+                font-weight: 300;
+                border: none;
+                padding: 0 10px;
+                background: url('../images/uploads/topsearch.png') no-repeat right 20px center;
+            }
+
+        .search-button {
+            height: 46px;
+            padding: 0 20px;
+            background-color: #3b5998;
+            color: #fff;
+            border: none;
+            border-radius: 0 3px 3px 0;
+            cursor: pointer;
+        }
+
+            .search-button:hover {
+                background-color: #4469b0;
+            }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-ZenhBwBW9N8IpGlpcoEteNifv8KTjwXk1Am7LkL5MZ9zMNDXOeMyF/+TqMziT25C" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Author List</h1>
+
+
+        <table class="table" id="bookTable">
+            <thead>
+                <tr class="tr1">
+                    <th class="sortable" data-column="ID">
+                        ID
+                    </th>
+                    <th class="sortable" data-column="Name">
+                        Name
+                    </th>
+                    <th class="sortable" data-column="NumberOfWorks">
+                        Number Of Works
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td data-column="ID">@item.ID</td>
+                        <td data-column="AuthorName">@item.AuthorName</td>
+                        <td data-column="NumberOfWorks">@item.NumberOfWorks</td>
+
+                        <td>
+                            <a class="btn btn-warning btn-outline-secondary" ">Edit</a>
+                            <h1></h1>
+                            <a class="btn btn-danger btn-outline-secondary" ">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2K8uLyrgkLJQIoizTvJJcofAqzWFOBTYBIbsa8Ubv9yRNk5u14dkzCq2QbEz" crossorigin="anonymous"></script>
+    
+
+
+</body>

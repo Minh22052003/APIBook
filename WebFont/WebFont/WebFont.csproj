@@ -126,6 +126,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Book.cs" />
     <Compile Include="Models\LoginAcc.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +148,35 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\home.css" />
+    <Content Include="Content\images\bag.svg" />
+    <Content Include="Content\images\comic.png" />
+    <Content Include="Content\images\cooking.png" />
+    <Content Include="Content\images\doi-thua.jpg" />
+    <Content Include="Content\images\dots-green.svg" />
+    <Content Include="Content\images\dots-yellow.svg" />
+    <Content Include="Content\images\favi.png" />
+    <Content Include="Content\images\favicon4.png" />
+    <Content Include="Content\images\hail-mary.jpg" />
+    <Content Include="Content\images\ico_coupon_red.svg" />
+    <Content Include="Content\images\ico_promotion.svg" />
+    <Content Include="Content\images\img-grid-1.jpg" />
+    <Content Include="Content\images\img-grid-2.jpg" />
+    <Content Include="Content\images\img-grid-3.jpg" />
+    <Content Include="Content\images\post-1.jpg" />
+    <Content Include="Content\images\post-2.jpg" />
+    <Content Include="Content\images\post-3.jpg" />
+    <Content Include="Content\images\return.svg" />
+    <Content Include="Content\images\science.png" />
+    <Content Include="Content\images\support.svg" />
+    <Content Include="Content\images\truck.svg" />
+    <Content Include="Content\images\why-choose-us-img.jpg" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\notify.js" />
+    <Content Include="Content\js\validator.js" />
+    <Content Include="Content\notify.css" />
+    <Content Include="Content\shop.css" />
+    <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -184,6 +214,9 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\UpdateUser.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\TopNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

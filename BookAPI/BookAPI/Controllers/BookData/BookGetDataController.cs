@@ -21,6 +21,7 @@ namespace BookAPI.Controllers.BookData
         }
         //Các hàm get
         // api/BookGetData/Get_AllBook
+        //[AllowAnonymous]
         [HttpGet]
         public HttpResponseMessage Get_AllBook()
         {
@@ -145,6 +146,68 @@ namespace BookAPI.Controllers.BookData
             var books = (from b in _context.Books.Include("Categories").Include("Authors")
                          join p in _context.Publishers on b.PublisherID equals p.ID
                          where p.PublisherName.Contains(publisherName)
+                         select new
+                         {
+                             b.ID,
+                             b.Title,
+                             b.DescriptionB,
+                             Publisher = p.PublisherName,
+                             Authors = b.Authors.Select(a => a.AuthorName).ToList(),
+                             Categories = b.Categories.Select(c => c.CategoryName).ToList(),
+                             b.PublishedDate,
+                             b.BookLink,
+                             b.CoverImage
+                         }).ToList();
+            if (books != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, books);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+
+        //   api/BookGetData/Get_BookByHistoryUser?iduser=1
+        [HttpGet]
+        public HttpResponseMessage Get_BookByHistoryUser(int iduser)
+        {
+
+            var books = (from b in _context.Books.Include("Categories").Include("Authors")
+                         join p in _context.Publishers on b.PublisherID equals p.ID
+                         join h in _context.ReadingHistories on b.ID equals h.BookID
+                         where h.UserID == iduser
+                         select new
+                         {
+                             b.ID,
+                             b.Title,
+                             b.DescriptionB,
+                             Publisher = p.PublisherName,
+                             Authors = b.Authors.Select(a => a.AuthorName).ToList(),
+                             Categories = b.Categories.Select(c => c.CategoryName).ToList(),
+                             b.PublishedDate,
+                             b.BookLink,
+                             b.CoverImage
+                         }).ToList();
+            if (books != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, books);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+
+        //   api/BookGetData/Get_BookByFavoriteUser?iduser=1
+        [HttpGet]
+        public HttpResponseMessage Get_BookByFavoriteUser(int iduser)
+        {
+
+            var books = (from b in _context.Books.Include("Categories").Include("Authors")
+                         join p in _context.Publishers on b.PublisherID equals p.ID
+                         join f in _context.FavoriteBooks on b.ID equals f.BookID
+                         where f.UserID == iduser
                          select new
                          {
                              b.ID,

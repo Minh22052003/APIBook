@@ -21,18 +21,8 @@ namespace BookAPI.Controllers.UserData
             _context = new ModelBook();
         }
 
-        //Gọi API https://localhost:44380/api/UserPostData/Get_UserName
-        public HttpResponseMessage Get_UserName()
-        {
-            var username = from n in _context.Users
-                           select new
-                           {
-                               n.Username,
-                           };
-            return Request.CreateResponse(HttpStatusCode.OK, username);
-        }
 
-        //Gọi API https://localhost:44380/api/UserPostData/POST_CreateAccUser
+        //Gọi API api/UserPostData/POST_CreateAccUser
         [HttpPost]
         public HttpResponseMessage POST_CreateAccUser(UserLogin userLogin)
         {
@@ -60,7 +50,7 @@ namespace BookAPI.Controllers.UserData
             }
         }
 
-        //Gọi API https://localhost:44380/api/UserPostData/Login
+        //Gọi API api/UserPostData/Login
         [HttpPost]
         public async Task<HttpResponseMessage> Login(UserLogin request)
         {
@@ -80,6 +70,8 @@ namespace BookAPI.Controllers.UserData
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+        
+
 
     }
 }

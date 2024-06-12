@@ -9,13 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebFont.Models;
 
 namespace WebFont.Controllers
 {
     public class AccountController : Controller
     {
+        string URLLogin = "https://localhost:44380/api/UserPostData/Login";
+        string URLGetUserName = "https://localhost:44380/api/UserGetData/Get_UserName";
         private readonly HttpClient _httpClient;
 
         public AccountController()
@@ -31,26 +35,49 @@ namespace WebFont.Controllers
         {
             return View();
         }
+
+
+
         [HttpPost]
         public async Task<ActionResult> Login(string username, string password)
         {
             try
             {
-                string apiUrl = "https://localhost:44380/api/UserPostData/Login";
-
+                //Gửi
+                string apiUrl = URLLogin;
                 LoginAcc loginuser = new LoginAcc { Username = username, Password = HashPassword(username,password) };
-
                 string json = JsonConvert.SerializeObject(loginuser);
-
                 StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-
                 HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, data);
-
                 if (response.IsSuccessStatusCode)
                 {
+                    //Nhận
                     string responseData = await response.Content.ReadAsStringAsync();
-
                     User user = JsonConvert.DeserializeObject<User>(responseData);
+                    if(user.FullName == null)
+                    {
+                        user.FullName = "null";
+                    }
+                    if (user.Email == null)
+                    {
+                        user.Email = "null";
+                    }
+                    if (user.BirthDate == null)
+                    {
+                        user.BirthDate = new DateTime(0001, 01, 01);
+                    }
+                    if (user.Gender == null)
+                    {
+                        user.Gender = "null";
+                    }
+
+                    FormsAuthentication.SetAuthCookie(user.Username, false);
+                    var userData = $"{user.UserID};{user.FullName};{user.Email};{user.BirthDate};{user.Gender}";
+                    var authTicket = new FormsAuthenticationTicket(
+                        1, user.Username, DateTime.Now, DateTime.Now.AddHours(2), false, userData);
+                    string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                    var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    HttpContext.Response.Cookies.Add(authCookie);
 
                     return View("Profile", user);
                 }
@@ -88,7 +115,7 @@ namespace WebFont.Controllers
             }
 
             List<UsernameResponse> lusername;
-            HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:44380/api/UserPostData/Get_UserName");
+            HttpResponseMessage response = await _httpClient.GetAsync(URLGetUserName);
             string responsData = await response.Content.ReadAsStringAsync();
             lusername = JsonConvert.DeserializeObject<List<UsernameResponse>>(responsData);
             foreach (var userName in lusername)
@@ -118,6 +145,61 @@ namespace WebFont.Controllers
                 ViewBag.Error = "Không thể tạo tài khoản: " + errorMessage;
                 return View();
             }
+        }
+
+        public ActionResult UpdateUser()
+        {
+            User user = new User();
+            // Lấy cookie xác thực
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                // Giải mã cookie để lấy thông tin user
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    user.Username = authTicket.Name;
+                    string[] userData = authTicket.UserData.Split(';');
+                    int userId;
+                    if (int.TryParse(userData[0], out userId))
+                    {
+                        user.UserID = userId;
+                    }
+                    user.FullName = userData[1];
+                    user.Email = userData[2];
+                    user.BirthDate = DateTime.Parse(userData[3]);
+                    user.Gender = userData[4];
+                }
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UpdateUser(string fullname, string email, string birthdate, string gender)
+        {
+            User user = new User();
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    user.Username = authTicket.Name;
+                    string[] userData = authTicket.UserData.Split(';');
+                    user.UserID = int.Parse(userData[0]);
+                    user.FullName = userData[1];
+                    user.Email = userData[2];
+                    user.BirthDate = DateTime.Parse(userData[3]);
+                    user.Gender = userData[4];
+                }
+                user.FullName = fullname;
+                user.Email = email;
+                user.Gender = gender;
+                user.BirthDate = DateTime.Parse(birthdate);
+                return View(user);
+            }
+            return View();
+
         }
 
 

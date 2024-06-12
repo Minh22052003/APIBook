@@ -1,33 +1,211 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<WebFont.Models.Book>
+@{
+    ViewBag.Title = "Book List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<!-- Slider -->
+<div class="slider">
+    <div class="container">
+        <div id="carouselExample" class="carousel slide touch" data-bs-ride="carousel" data-bs-interval="5000" data-bs-touch="true">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-12 col-lg-5 ps-md-4">
+                            <h1 class="mb-4 fw-bold fs-2 text-light">Khoa học máy tính</h1>
+                            <p class="mb-4 slide-caption opacity-50 fs-6 text-light">
+                                Khám phá thế giới công nghệ với những chiếc máy tính hiện đại!
+                                Từ sự tiến hóa của máy tính đến những bộ não nhân tạo thông minh, mỗi trang sách mở ra cánh cửa đến vũ trụ lập trình và những khả năng vô tận.
+                                Máy tính không chỉ là công cụ mà còn là chìa khóa mở ra tương lai, sẵn sàng chờ đợi bạn khám phá!
+                            </p>
+                            <a href="" class="btn rounded-5 px-4 py-2 fs-5 fw-medium text-light explore">Xem ngay</a>
+                        </div>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+                        <div class="col-sm-12 col-lg-7 pt-5 pt-lg-0 slide-img">
+                            <img src="~/Content/images/comic.png" alt="slide image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-12 col-lg-5 ps-md-4">
+                            <h1 class="mb-4 fw-bold fs-2 text-light">Khám phá khoa học</h1>
+                            <p class="mb-4 slide-caption opacity-50 fs-6 text-light">
+                                Kích thích sự tò mò và khám phá với cuốn sách khoa học đầy màu sắc,
+                                mang đến những hiểu biết mới mẻ và hấp dẫn cho các trẻ nhỏ!
+                            </p>
+                            <a href="" class="btn rounded-5 px-4 py-2 fs-5 fw-medium text-light explore">Xem ngay</a>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-7 pt-5 pt-lg-0 slide-img">
+                            <img src="~/Content/images/science.png" alt="slide image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-12 col-lg-5 ps-md-4">
+                            <h1 class="mb-4 fw-bold fs-2 text-light">Cùng nhau vào bếp</h1>
+                            <p class="mb-4 slide-caption opacity-50 fs-6 text-light">
+                                Khám phá hương vị thế giới và học cách trở thành đầu bếp tài ba với những công thức đơn giản
+                                và ngon miệng từ cuốn sách nấu ăn độc đáo này!
+                                Từ món ăn truyền thống đến những món mới lạ, tất cả đều sẽ được tiết lộ bí mật trong từng trang sách,
+                                mang lại cho bạn trải nghiệm ẩm thực tuyệt vời nhất.
+                            </p>
+                            <a href="" class="btn rounded-5 px-4 py-2 fs-5 fw-medium text-light explore">Xem ngay</a>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-7 pt-5 pt-lg-0 slide-img">
+                            <img src="~/Content/images/cooking.png" alt="slide image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="d-none d-md-block carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+
+            <button class="d-none d-md-block carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+        </div>
     </div>
-</main>
+</div>
+<!-- Shop -->
+<div class="shop">
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-lg-3 pe-5">
+                <div class="row">
+                    <form action="" class="form-search">
+                        <input type="text" placeholder="Tìm tên sách hoặc tác giả">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                </div>
+
+                <div class="nav-filter py-4">
+                    <div class="filter mt-2">
+                        <div class="py-2 d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0 fs-5">Thể loại</h4>
+
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-category" aria-controls="nav-category" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="fa-solid fa-angle-down"></span>
+                            </button>
+                        </div>
+
+                        <div class="filter__body collapse navbar-collapse" id="nav-category">
+                            <ul class="mt-2 mb-4 lh-lg">
+                                <li><a href="#">Tất cả</a></li>
+                                <li><a href="#">Truyện tranh</a></li>
+                                <li><a href="#">Truyện ngôn tình</a></li>
+                                <li><a href="#">Tiểu thuyết</a></li>
+                                <li><a href="#">Khoa học</a></li>
+                                <li><a href="#">Tự truyện</a></li>
+                                <li><a href="#">Tiểu sử, hồi ký</a></li>
+                                <li><a href="#">Lịch sử</a></li>
+                                <li><a href="#">Tạp chí thể thao</a></li>
+                                <li><a href="#">Tạp chí thời trang</a></li>
+                                <li><a href="#">Sách dạy nấu ăn</a></li>
+                                <li><a href="#">Sách giáo khoa</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="filter mt-2">
+                        <div class="py-2 d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0 fs-5">Ngôn ngữ</h4>
+
+                            <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#nav-language" aria-controls="nav-language" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="fa-solid fa-angle-down"></span>
+                            </button>
+                        </div>
+
+                        <div class="filter__body collapse navbar-collapse" id="nav-language">
+                            <ul class="mt-2 mb-4 lh-lg">
+                                <li><a href="#">Tất cả</a></li>
+                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="#">Tiếng Anh</a></li>
+                                <li><a href="#">Tiếng Pháp</a></li>
+                                <li><a href="#">Tiếng Đức</a></li>
+                                <li><a href="#">Tiếng Trung</a></li>
+                                <li><a href="#">Tiếng Hàn</a></li>
+                                <li><a href="#">Tiếng Nhật</a></li>
+                                <li><a href="#">Tiếng Nga</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="d-flex justify-content-end">
+                            <p class="mb-0 me-2">Sắp xếp theo:</p>
+
+                            <select class="sortby">
+                                <option value="">Không sắp xếp</option>
+                                <option value="">Giá tăng dần</option>
+                                <option value="">Giá giảm dần</option>
+                                <option value="">Tên a-z</option>
+                                <option value="">Tên z-a</option>
+                                <option value="">Ngày ra mắt</option>
+                                <option value="">Lượt mua</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-3 col-md-4 col-6 mb-4">
+                            <div class="product">
+                                <a href="product.html" class="product__link">
+                                    <div class="product__img">
+                                        <img src="@item.CoverImage" alt="@item.Title Cover Image" class="img-fluid" style="max-width: 200px; max-height: 400px;" />
+                                    </div>
+
+                                    <div class="product__info p-3 pt-2">
+                                        <h6 class="name mb-2">@item.Title</h6>
+                                        <p>
+                                            @foreach (var author in item.Authors)
+                                            {
+                                                @author<br />
+                                            }
+                                        </p>
+                                        <p class="">@item.PublishedDate</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="row mt-5 text-center">
+                    <div class="col-lg-12">
+                        <div class="product__pagination">
+
+                            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                            {
+                                if (i == ViewBag.CurrentPage)
+                                {
+                                    <a class="mx-2">@i</a>
+                                }
+                                else
+                                {
+                                    <a class="mx-2" href="@Url.Action("Index", "Home", new { page = i })">@i</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
