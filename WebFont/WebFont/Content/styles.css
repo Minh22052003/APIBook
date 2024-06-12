@@ -102,6 +102,10 @@ button {
     background-color: var(--bg-sublink);
 }
 
+.fa-star.selected {
+    color: gold;
+}
+
 /* Header */
 .header {
     width: 100%;

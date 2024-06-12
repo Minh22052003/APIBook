@@ -11,6 +11,9 @@
     padding-right: 3.5rem;
 }
 
+.fa-star.selected {
+    color: gold;
+}
 .shop .form-search button{
     position: absolute;
     top: 0.2rem;

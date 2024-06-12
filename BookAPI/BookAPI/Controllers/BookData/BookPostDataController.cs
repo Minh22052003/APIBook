@@ -47,5 +47,22 @@ namespace BookAPI.Controllers.BookData
             _context.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK, favoriteBook);
         }
+
+        //api/BookPostData/Create_Review
+        //Thêm đánh giá sách
+        [HttpPost]
+        public HttpResponseMessage Create_Review(Review review)
+        {
+            Review review1 = new Review();
+            review1.ReviewID = 0;
+            review1.UserID = review.UserID;
+            review1.BookID = review.BookID;
+            review1.Rating = review.Rating;
+            review1.Content = review.Content;
+            review1.ReviewTime = review.ReviewTime;
+            _context.Reviews.Add(review1);
+            _context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK, review1);
+        }
     }
 }

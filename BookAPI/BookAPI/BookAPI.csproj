@@ -283,6 +283,7 @@
     <Compile Include="Controllers\BookData\BookDeleteDataController.cs" />
     <Compile Include="Controllers\BookData\BookGetDataController.cs" />
     <Compile Include="Controllers\BookData\BookPostDataController.cs" />
+    <Compile Include="Controllers\BookData\BookPutDataController.cs" />
     <Compile Include="Controllers\BookData\DatafromAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QLAuthorsController.cs" />
@@ -385,6 +386,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BookPutData\" />
     <Folder Include="Views\DatafromAPI\" />
   </ItemGroup>
   <ItemGroup>

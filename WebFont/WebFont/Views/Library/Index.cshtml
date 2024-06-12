@@ -91,13 +91,14 @@
                                         </p>
                                         <p class="">@item.PublishedDate</p>
 
-                                        <div class="rating mb-2">
+                                        <div class="rating mb-2" data-rating="3">
                                             <i class="fa-regular fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
                                         </div>
+
                                     </div>
                                 </a>
                             </div>
@@ -126,4 +127,17 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ratings = document.querySelectorAll('.rating');
 
+            ratings.forEach(function (rating) {
+                var score = rating.getAttribute('data-rating');
+                var stars = rating.querySelectorAll('.fa-star');
+                for (var i = 0; i < score; i++) {
+                    stars[i].classList.add('selected');
+                }
+            });
+        });
+
+    </script>

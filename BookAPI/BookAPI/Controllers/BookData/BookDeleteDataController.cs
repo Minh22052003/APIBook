@@ -47,5 +47,19 @@ namespace BookAPI.Controllers.BookData
             _context.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+        // api/BookDeleteData/DeleteBookInReview?id=1
+        [HttpDelete]
+        public HttpResponseMessage DeleteBookInReview(int id)
+        {
+            var bookReview = _context.Reviews.FirstOrDefault(r=>r.ReviewID == id);
+            if (bookReview == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
+            }
+            _context.Reviews.Remove(bookReview);
+            _context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

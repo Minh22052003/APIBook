@@ -19,6 +19,26 @@ namespace BookAPI.Controllers.BookData
         {
             _context = new ModelBook();
         }
+        public double ScoreBook(int bookID)
+        {
+            var reviews = _context.Reviews.Where(r => r.BookID == bookID).ToList();
+
+            if (reviews.Count == 0)
+            {
+                return 0;
+            }
+
+            double totalScore = reviews.Sum(r => r.Rating);
+            double averageScore = totalScore / reviews.Count;
+
+            int roundedScore = (int)Math.Round(averageScore, MidpointRounding.AwayFromZero);
+
+            return roundedScore;
+        }
+
+
+
+
         //Các hàm get
         // api/BookGetData/Get_AllBook
         //[AllowAnonymous]
@@ -32,16 +52,32 @@ namespace BookAPI.Controllers.BookData
                              b.ID,
                              b.Title,
                              b.DescriptionB,
-                             Publisher = p.PublisherName,
+                             Publisher = b.Publisher.PublisherName,
                              Authors = b.Authors.Select(a => a.AuthorName).ToList(),
                              Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                              b.PublishedDate,
                              b.BookLink,
                              b.CoverImage
-                         }).ToList();
-            if (books != null)
+                         })
+                        .ToList();
+
+            var booksWithRating = books.Select(b => new
             {
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                b.ID,
+                b.Title,
+                b.DescriptionB,
+                b.Publisher,
+                b.Authors,
+                b.Categories,
+                b.PublishedDate,
+                Rating = ScoreBook(b.ID),
+                b.BookLink,
+                b.CoverImage
+            }).ToList();
+
+            if (booksWithRating.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, booksWithRating);
             }
             else
             {
@@ -53,7 +89,7 @@ namespace BookAPI.Controllers.BookData
         [HttpGet]
         public HttpResponseMessage Get_BookByID(int id)
         {
-
+            double Rating =  ScoreBook(id);
             var books = from b in _context.Books.Include("Categories").Include("Authors")
                         join p in _context.Publishers on b.PublisherID equals p.ID
                         where b.ID == id
@@ -66,6 +102,7 @@ namespace BookAPI.Controllers.BookData
                             Authors = b.Authors.Select(a => a.AuthorName).ToList(),
                             Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                             b.PublishedDate,
+                            Rating,
                             b.BookLink,
                             b.CoverImage
                         };
@@ -92,16 +129,32 @@ namespace BookAPI.Controllers.BookData
                              b.ID,
                              b.Title,
                              b.DescriptionB,
-                             Publisher = p.PublisherName,
+                             Publisher = b.Publisher.PublisherName,
                              Authors = b.Authors.Select(a => a.AuthorName).ToList(),
                              Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                              b.PublishedDate,
                              b.BookLink,
                              b.CoverImage
-                         }).ToList();
-            if (books != null)
+                         })
+                        .ToList();
+
+            var booksWithRating = books.Select(b => new
             {
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                b.ID,
+                b.Title,
+                b.DescriptionB,
+                b.Publisher,
+                b.Authors,
+                b.Categories,
+                b.PublishedDate,
+                Rating = ScoreBook(b.ID),
+                b.BookLink,
+                b.CoverImage
+            }).ToList();
+
+            if (booksWithRating.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, booksWithRating);
             }
             else
             {
@@ -122,16 +175,32 @@ namespace BookAPI.Controllers.BookData
                              b.ID,
                              b.Title,
                              b.DescriptionB,
-                             Publisher = p.PublisherName,
+                             Publisher = b.Publisher.PublisherName,
                              Authors = b.Authors.Select(a => a.AuthorName).ToList(),
                              Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                              b.PublishedDate,
                              b.BookLink,
                              b.CoverImage
-                         }).ToList();
-            if (books != null)
+                         })
+                        .ToList();
+
+            var booksWithRating = books.Select(b => new
             {
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                b.ID,
+                b.Title,
+                b.DescriptionB,
+                b.Publisher,
+                b.Authors,
+                b.Categories,
+                b.PublishedDate,
+                Rating = ScoreBook(b.ID),
+                b.BookLink,
+                b.CoverImage
+            }).ToList();
+
+            if (booksWithRating.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, booksWithRating);
             }
             else
             {
@@ -151,16 +220,32 @@ namespace BookAPI.Controllers.BookData
                              b.ID,
                              b.Title,
                              b.DescriptionB,
-                             Publisher = p.PublisherName,
+                             Publisher = b.Publisher.PublisherName,
                              Authors = b.Authors.Select(a => a.AuthorName).ToList(),
                              Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                              b.PublishedDate,
                              b.BookLink,
                              b.CoverImage
-                         }).ToList();
-            if (books != null)
+                         })
+                        .ToList();
+
+            var booksWithRating = books.Select(b => new
             {
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                b.ID,
+                b.Title,
+                b.DescriptionB,
+                b.Publisher,
+                b.Authors,
+                b.Categories,
+                b.PublishedDate,
+                Rating = ScoreBook(b.ID),
+                b.BookLink,
+                b.CoverImage
+            }).ToList();
+
+            if (booksWithRating.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, booksWithRating);
             }
             else
             {
@@ -180,16 +265,32 @@ namespace BookAPI.Controllers.BookData
                              b.ID,
                              b.Title,
                              b.DescriptionB,
-                             Publisher = p.PublisherName,
+                             Publisher = b.Publisher.PublisherName,
                              Authors = b.Authors.Select(a => a.AuthorName).ToList(),
                              Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                              b.PublishedDate,
                              b.BookLink,
                              b.CoverImage
-                         }).ToList();
-            if (books != null)
+                         })
+                        .ToList();
+
+            var booksWithRating = books.Select(b => new
             {
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                b.ID,
+                b.Title,
+                b.DescriptionB,
+                b.Publisher,
+                b.Authors,
+                b.Categories,
+                b.PublishedDate,
+                Rating = ScoreBook(b.ID),
+                b.BookLink,
+                b.CoverImage
+            }).ToList();
+
+            if (booksWithRating.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, booksWithRating);
             }
             else
             {
@@ -211,16 +312,32 @@ namespace BookAPI.Controllers.BookData
                              b.ID,
                              b.Title,
                              b.DescriptionB,
-                             Publisher = p.PublisherName,
+                             Publisher = b.Publisher.PublisherName,
                              Authors = b.Authors.Select(a => a.AuthorName).ToList(),
                              Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                              b.PublishedDate,
                              b.BookLink,
                              b.CoverImage
-                         }).ToList();
-            if (books != null)
+                         })
+                        .ToList();
+
+            var booksWithRating = books.Select(b => new
             {
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                b.ID,
+                b.Title,
+                b.DescriptionB,
+                b.Publisher,
+                b.Authors,
+                b.Categories,
+                b.PublishedDate,
+                Rating = ScoreBook(b.ID),
+                b.BookLink,
+                b.CoverImage
+            }).ToList();
+
+            if (booksWithRating.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, booksWithRating);
             }
             else
             {
@@ -242,16 +359,32 @@ namespace BookAPI.Controllers.BookData
                              b.ID,
                              b.Title,
                              b.DescriptionB,
-                             Publisher = p.PublisherName,
+                             Publisher = b.Publisher.PublisherName,
                              Authors = b.Authors.Select(a => a.AuthorName).ToList(),
                              Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                              b.PublishedDate,
                              b.BookLink,
                              b.CoverImage
-                         }).ToList();
-            if (books != null)
+                         })
+                        .ToList();
+
+            var booksWithRating = books.Select(b => new
             {
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                b.ID,
+                b.Title,
+                b.DescriptionB,
+                b.Publisher,
+                b.Authors,
+                b.Categories,
+                b.PublishedDate,
+                Rating = ScoreBook(b.ID),
+                b.BookLink,
+                b.CoverImage
+            }).ToList();
+
+            if (booksWithRating.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, booksWithRating);
             }
             else
             {

@@ -14,6 +14,7 @@ namespace WebFont.Models
         public List<string> Authors { get; set; }
         public List<string> Categories { get; set; }
         public string PublishedDate { get; set; }
+        public double Rating { get; set; }
         public string BookLink { get; set; }
         public string CoverImage { get; set; }
 
