@@ -1,0 +1,378 @@
+
+body{
+    background-color: var(--bg-body);
+}
+
+.container.product{
+    background-color: var(--bg-light);
+    padding: 2.5rem 2rem;
+    border-radius: 0.5rem;
+}
+
+.container.product .product__imgs{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container.product .product__imgs .img-wrapper{
+    width: 6rem;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.product .product__imgs a.img-wrapper{
+    background-color: #5f6061;
+    color: var(--text-white);
+    border-radius: 0.5rem;
+}
+
+.container.product .product__imgs .img-wrapper img,
+.container.product .product__img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+.container.product .product__img{
+    width: 30rem;
+    aspect-ratio: 2/3;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.product .price{
+    color: var(--text-price);
+}
+
+.container.product .price del{
+    color: #363738;
+}
+
+.container.product .price span{
+    padding: 0.2rem 0.25rem;
+    background-color: var(--text-price);
+    color: var(--text-white);
+    border-radius: 0.35rem;
+}
+
+.container.product .product__button button{
+    box-shadow: none;
+}
+
+.container.product .product__button .add-to-cart{
+    background-color: transparent;
+    color: var(--text-price);
+    border: 0.125rem solid var(--text-price);
+}
+
+.container.product .product__button .buy-now{
+    background-color: var(--text-price);
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.container.product .product__quantity .quantity{
+    border: 0.0125rem solid #ccc;
+    border-radius: 0.25rem;
+}
+
+.container.product .product__quantity .quantity__input{
+    width: 2.5rem;
+    height: 2rem;
+    text-indent: 0;
+    border: none;
+    border-radius: 0;
+    border-left: 0.0125rem solid #ccc;
+    border-right: 0.0125rem solid #ccc;
+    text-align: center;
+    margin: 0;
+}
+
+.container.product .product__quantity .quantity__input:focus{
+    outline: none;
+}
+
+.container.product .product__quantity .quantity__sub,
+.container.product .product__quantity .quantity__add{
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    color: #363738;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.container.product .product__quantity button:hover{
+    cursor: pointer;
+}
+
+.container.product .estimate-arival p,
+.container.product .policy p{
+    width: 10rem;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}
+
+.container.product .estimate-arival a,
+.container.product .policy a{
+    color: var(--text-link-blue);
+}
+
+.section-voucher{
+    background-color: var(--bg-light);
+    margin-top: 3.5rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.section-voucher .list-voucher{
+    display: flex;
+    align-items: center;
+}
+
+.section-voucher .list-voucher .voucher-wrapper{
+    width: auto;
+    position: relative;
+    margin-right: 0.75rem;
+}
+
+.section-voucher .list-voucher .svg-bg{
+    filter: drop-shadow(rgba(0, 0, 0, 0.15) 0 0.0625rem 0.1875rem);
+}
+
+.section-voucher .list-voucher .voucher{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 21.875rem;
+    display: flex;
+}
+
+.section-voucher .list-voucher .voucher__icon{
+    width: 5.125rem;
+    height: 6.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+}
+
+.section-voucher .list-voucher .voucher__icon img{
+    position: absolute;
+    display: flex;
+    height: 30px;
+    width: 30px;
+}
+
+.section-voucher .list-voucher .voucher__info{
+    flex: 1;
+    padding: 20px 10px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-voucher .list-voucher .voucher__info-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-voucher .list-voucher .voucher__info-title h5{
+    color: #0D0E0F;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 12.5rem;
+}
+
+.section-voucher .list-voucher .voucher__info-title a{
+    color: var(--text-link-blue);
+    font-size: 0.75rem;
+}
+
+.section-voucher .list-voucher .voucher__info p{
+    display: -webkit-box;
+    height: calc(0.75rem * 2 * 1.4);
+    font-size: 0.75rem;
+    overflow: hidden;
+    line-height: 1.4;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    color: #7A7E7F;
+}
+
+.section-voucher .show-more-voucher{
+    padding: 0;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.section-voucher .show-more-voucher span{
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--text-price);
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+    border-radius: 50%;
+}
+
+.suggestion{
+    background-color: var(--bg-light);
+    border-radius: 0.5rem;
+    margin-top: 3.5rem;
+}
+
+.suggestion .product{
+    color: var(--text-dark);
+}
+
+.suggestion .product .product__img{
+    width: 100%;
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.suggestion .product .product__img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.suggestion .product .name{
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    transition: all ease 0.2s;
+    line-height: 1.25rem;
+    height: 2.5rem;
+    margin-top: 0.5rem;
+}
+
+.suggestion .product .rating i{
+    font-size: 0.875rem;
+}
+
+.suggestion .product .price{
+    margin-top: 0.25rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-price);
+}
+
+.suggestion .product .discount{
+    padding: 0.2rem 0.25rem;
+    background-color: var(--text-price);
+    color: var(--text-white);
+    border-radius: 0.35rem;
+}
+
+.suggestion .product .cost{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #5d5d5d;
+}
+
+.descriptions{
+    margin-top: 3.5rem;
+    background-color: var(--bg-light);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.descriptions .description-text{
+    width: 100%;
+    text-align: justify;
+}
+
+.descriptions .description-text button{
+    background-color: transparent;
+    border: 0.125rem solid var(--text-price);
+    box-shadow: none;
+    color: var(--text-price);
+}
+
+.descriptions .tag{
+    color: #777;
+    font-size: 0.875rem;
+}
+
+.descriptions .info{
+    font-size: 0.875rem;
+}
+
+.descriptions .des-policy{
+    border-bottom: 0.0625rem solid #ccc;
+}
+
+.rating{
+    margin-top: 3.5rem;
+    background-color: var(--bg-light);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.rating .review__quantity{
+    text-align: center;
+    margin: 1.5rem;
+    min-width: 8rem;
+}
+
+.rating .review__quantity .rate{
+    font-size: 0.875rem;
+    color: #777;
+    width: 100%;
+}
+
+.rating .review__chart{
+    padding-left: 1rem;
+}
+
+.rating .review__chart .fa-star{
+    font-size: 0.875rem;
+    color: var(--bg-decoration);
+    padding-left: 0.25rem;
+    padding-right: 0.75rem;
+}
+
+.rating .review__chart .rating__progress{
+    width: 15rem;
+    height: 0.25rem;
+    background-color: #b3b2b2;
+    border-radius: 0.2rem;
+}
+
+.rating .review__chart .rating__progress span{
+    display: block;
+    width: 50%;
+    height: 0.25rem;
+    background-color: var(--bg-decoration);
+    border-radius: 0.2rem;
+}
+
+.rating .review__chart .rating__percent{
+    padding-left: 0.5rem;
+}
+

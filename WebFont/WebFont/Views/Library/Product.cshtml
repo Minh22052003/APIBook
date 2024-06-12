@@ -1,0 +1,199 @@
+﻿@model IEnumerable<WebFont.Models.Book>
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Product -->
+<div class="container product mt-5">
+    <div class="row">
+        @if (Model.Count() == 1)
+        {
+            var item = Model.First();
+            <div class="col-12 col-lg-6 col-xl-5 ps-lg-4">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="product__img pt-2">
+                            <img src="@item.CoverImage" alt="@item.Title Cover Image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 col-xl-7 mt-5 mt-lg-0 ps-md-5 ps-lg-0">
+                <h4 class="mb-4 fs-4 fw-medium" style="color: #333;">@item.Title</h4>
+
+                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">@item.Publisher</span></p>
+                <p class="mb-1 fs-6 fw-medium">
+                    Tác giả: <span class="fw-semibold">
+                        @foreach (var author in item.Authors)
+                        {
+                            @author<br />
+                        }
+                    </span>
+                </p>
+                <p class="mb-1 fs-6 fw-medium">Ngày xuất bản: <span class="fw-semibold">@item.PublishedDate</span></p>
+                <p class="mb-1 fs-6 fw-medium">
+                    Thể loại: <span class="fw-semibold">
+                        @foreach (var category in item.Categories)
+                        {
+                            @category<br />
+                        }
+                    </span>
+                </p>
+
+                <div class="my-4 opacity-75">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    (<span>0</span> đánh giá)
+                </div>
+
+
+                <div class="product__button pt-4">
+                    <button class="buy-now me-2" type="button" onclick="window.location.href='@item.BookLink'">Đọc ngay</button>
+                    <button class="add-to-cart" type="button"><i class="fa-solid fa-heart pe-2"></i>Thêm vào yêu thích</button>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+<!-- List product suggestion -->
+<div class="suggestion container p-4">
+    <h4 class="fs-4 fw-medium mt-2 mb-4 ms-3">Đề xuất cho bạn</h4>
+
+    <div class="row mb-3">
+        @foreach (var books in ViewData["Listds"] as List<WebFont.Models.Book>)
+        {
+            <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+                <div class="product">
+                    <a href="@Url.Action("Product", "Library", new { BookID = books.ID , category = books.Categories[0] })" class="product__link">
+                        <div class="product__img">
+                            <img src="@books.CoverImage" alt="@books.Title Cover Image" />
+                        </div>
+
+                        <div class="product__info pt-2">
+                            <h6 class="name mb-2">@books.Title</h6>
+                            <p>
+                                @foreach (var author in books.Authors)
+                                {
+                                    @author
+                                }
+                            </p>
+                            <p class="">@books.PublishedDate</p>
+
+                            <div class="rating mb-2">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Product details info -->
+<div class="descriptions container">
+    <h4>Thông tin chi tiết</h4>
+    @if (Model.Count() == 1)
+    {
+        var item = Model.First();
+        <div class="row p-1 mt-4">
+            <div class="col-6 col-lg-4 tag">
+                <p class="m-0 py-1">Tác giả</p>
+                <p class="m-0 py-1">Nhà xuất bản</p>
+                <p class="m-0 py-1">Năm xuất bản</p>
+                <p class="m-0 py-1">Thể loại</p>
+            </div>
+            <div class="col-6 col-lg-4 info">
+                <p class="m-0 py-1">
+                    @foreach (var author in item.Authors)
+                    {
+                        @author<br />
+                    }
+                </p>
+                <p class="m-0 py-1">@item.Publisher</p>
+                <p class="m-0 py-1">@item.PublishedDate</p>
+                <p class="m-0 py-1">
+                    @foreach (var category in item.Categories)
+                    {
+                        @category<br />
+                    }
+                </p>
+            </div>
+        </div>
+
+        <div class="description-text py-2">
+            <p>
+                @item.DescriptionB
+            </p>
+        </div>
+    }
+</div>
+
+<!-- Rating -->
+<div class="rating container">
+    <h4>Đánh giá sản phẩm</h4>
+
+    <div class="d-flex">
+        <div class="d-flex align-items-center">
+            <div class="review__quantity">
+                <p class="fs-3 fw-bold"><span class="fs-1">0</span>/5</p>
+                <div class="rate">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <span>(0 đánh giá)</span>
+            </div>
+
+            <div class="review__chart">
+                <div class="d-flex align-items-center">
+                    5 <i class="fa-regular fa-star"></i>
+                    <div class="rating__progress"><span></span></div>
+                    <div class="rating__percent">0%</div>
+                </div>
+                <div class="d-flex align-items-center">
+                    5 <i class="fa-regular fa-star"></i>
+                    <div class="rating__progress"><span></span></div>
+                    <div class="rating__percent">0%</div>
+                </div>
+                <div class="d-flex align-items-center">
+                    5 <i class="fa-regular fa-star"></i>
+                    <div class="rating__progress"><span></span></div>
+                    <div class="rating__percent">0%</div>
+                </div>
+                <div class="d-flex align-items-center">
+                    5 <i class="fa-regular fa-star"></i>
+                    <div class="rating__progress"><span></span></div>
+                    <div class="rating__percent">0%</div>
+                </div>
+                <div class="d-flex align-items-center">
+                    5 <i class="fa-regular fa-star"></i>
+                    <div class="rating__progress"><span></span></div>
+                    <div class="rating__percent">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-grow-1 ps-5 text-center d-flex align-items-center">
+            <p class="review-status">
+                Chỉ có thành viên mới có thể viết nhận xét.
+                Vui lòng <a href="">đăng nhập</a> hoặc <a href="">đăng ký</a>.
+            </p>
+        </div>
+    </div>
+</div>
+

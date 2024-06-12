@@ -54,21 +54,21 @@ namespace BookAPI.Controllers.BookData
         public HttpResponseMessage Get_BookByID(int id)
         {
 
-            var books = (from b in _context.Books.Include("Categories").Include("Authors")
-                         join p in _context.Publishers on b.PublisherID equals p.ID
-                         where b.ID == id
-                         select new
-                         {
-                             b.ID,
-                             b.Title,
-                             b.DescriptionB,
-                             Publisher = p.PublisherName,
-                             Authors = b.Authors.Select(a => a.AuthorName).ToList(),
-                             Categories = b.Categories.Select(c => c.CategoryName).ToList(),
-                             b.PublishedDate,
-                             b.BookLink,
-                             b.CoverImage
-                         }).ToList();
+            var books = from b in _context.Books.Include("Categories").Include("Authors")
+                        join p in _context.Publishers on b.PublisherID equals p.ID
+                        where b.ID == id
+                        select new
+                        {
+                            b.ID,
+                            b.Title,
+                            b.DescriptionB,
+                            Publisher = p.PublisherName,
+                            Authors = b.Authors.Select(a => a.AuthorName).ToList(),
+                            Categories = b.Categories.Select(c => c.CategoryName).ToList(),
+                            b.PublishedDate,
+                            b.BookLink,
+                            b.CoverImage
+                        };
             if (books != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, books);
@@ -117,6 +117,35 @@ namespace BookAPI.Controllers.BookData
             var books = (from b in _context.Books.Include("Categories").Include("Authors")
                          join p in _context.Publishers on b.PublisherID equals p.ID
                          where b.Categories.Any(a => a.CategoryName.Contains(categoryName))
+                         select new
+                         {
+                             b.ID,
+                             b.Title,
+                             b.DescriptionB,
+                             Publisher = p.PublisherName,
+                             Authors = b.Authors.Select(a => a.AuthorName).ToList(),
+                             Categories = b.Categories.Select(c => c.CategoryName).ToList(),
+                             b.PublishedDate,
+                             b.BookLink,
+                             b.CoverImage
+                         }).ToList();
+            if (books != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, books);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+        //   api/BookGetData/Get_BookByCategoryID?categoryID=20
+        [HttpGet]
+        public HttpResponseMessage Get_BookByCategoryID(int categoryID)
+        {
+
+            var books = (from b in _context.Books.Include("Categories").Include("Authors")
+                         join p in _context.Publishers on b.PublisherID equals p.ID
+                         where b.Categories.Any(a => a.ID == categoryID)
                          select new
                          {
                              b.ID,
@@ -223,6 +252,26 @@ namespace BookAPI.Controllers.BookData
             if (books != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, books);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+        //   api/BookGetData/Get_BookCategory
+        [HttpGet]
+        public HttpResponseMessage Get_BookCategory()
+        {
+
+            var categories = from c in _context.Categories
+                             select new
+                             {
+                                 c.ID,
+                                 c.CategoryName
+                             };
+            if (categories != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, categories);
             }
             else
             {

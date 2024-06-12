@@ -12,25 +12,10 @@ namespace WebFont.Controllers
 {
     public class HomeController : Controller
     {
-        public GetDataBookAPI data = new GetDataBookAPI();
-        public int pageSize = 8;
 
-
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index()
         {
-            int pageNumber = (page ?? 1);
-            List<Book> allBooks = await data.Get_AllBookAsync();
-            int totalBooks = allBooks.Count();
-            var books = allBooks
-                .OrderBy(b => b.ID)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            ViewBag.TotalPages = (int)Math.Ceiling(totalBooks / (double)pageSize);
-            ViewBag.CurrentPage = pageNumber;
-
-            return View(books);
+            return View();
         }
 
         public ActionResult About()
@@ -44,10 +29,6 @@ namespace WebFont.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-        public ActionResult Product()
-        {
             return View();
         }
     }
