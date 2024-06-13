@@ -42,13 +42,13 @@
                     </span>
                 </p>
 
-                <div class="my-4 opacity-75">
+                <div class="my-4 opacity-75" data-rating="@item.Rating">
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
-                    (<span>@item.Rating</span> đánh giá)
+                    (<span>@ViewBag.countRV</span> đánh giá)
                 </div>
 
 
@@ -87,7 +87,7 @@
                             </p>
                             <p class="">@books.PublishedDate</p>
 
-                            <div class="rating mb-2">
+                            <div class="rating mb-2" data-rating="@books.Rating">
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
@@ -134,6 +134,7 @@
         </div>
 
         <div class="description-text py-2">
+            <p class="m-0 py-1">Mô tả:</p>
             <p>
                 @item.DescriptionB
             </p>
@@ -196,4 +197,29 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ratings = document.querySelectorAll('.rating');
 
+        ratings.forEach(function (rating) {
+            var score = rating.getAttribute('data-rating');
+            var stars = rating.querySelectorAll('.fa-star');
+            for (var i = 0; i < score; i++) {
+                stars[i].classList.add('selected');
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ratings = document.querySelectorAll('.my-4');
+
+        ratings.forEach(function (rating) {
+            var score = rating.getAttribute('data-rating');
+            var stars = rating.querySelectorAll('.fa-star');
+            for (var i = 0; i < score; i++) {
+                stars[i].classList.add('selected');
+            }
+        });
+    });
+</script>

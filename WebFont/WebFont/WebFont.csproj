@@ -130,6 +130,8 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\LoginAcc.cs" />
+    <Compile Include="Models\ReviewBook.cs" />
+    <Compile Include="Models\ReviewUser.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

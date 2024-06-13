@@ -391,6 +391,64 @@ namespace BookAPI.Controllers.BookData
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
         }
+
+        //   api/BookGetData/Get_ReviewByBook?idbook=71
+        [HttpGet]
+        public HttpResponseMessage Get_ReviewByBook(int idbook)
+        {
+            var tmpreview = _context.Reviews.Include("User").Where(r=>r.BookID == idbook).ToList();
+            int n = tmpreview.Count();
+            var review = (from r in _context.Reviews.Include("User")
+                          where r.BookID == idbook
+                          select new
+                          {
+                              r.User.Username,
+                              r.User.FullName,
+                              r.Content,
+                              r.Rating,
+                              n,
+                              r.ReviewTime,
+                          }).ToList();
+                                        
+            if(review != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, review);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+
+        //   api/BookGetData/Get_ReviewByUser?iduser=6
+        [HttpGet]
+        public HttpResponseMessage Get_ReviewByUser(int iduser)
+        {
+            var tmpreview = _context.Reviews.Include("Book").Where(r => r.UserID == iduser).ToList();
+            int n = tmpreview.Count();
+            var review = (from r in _context.Reviews.Include("Book")
+                          where r.UserID == iduser
+                          select new
+                          {
+                              r.ReviewID,
+                              r.BookID,
+                              r.Book.Title,
+                              r.Rating,
+                              n,
+                              r.Content,
+                              r.ReviewTime,
+                          }).ToList();
+
+            if (review != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, review);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+
         //   api/BookGetData/Get_BookCategory
         [HttpGet]
         public HttpResponseMessage Get_BookCategory()

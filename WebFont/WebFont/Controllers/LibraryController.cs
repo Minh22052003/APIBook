@@ -64,6 +64,16 @@ namespace WebFont.Controllers
                 .Take(6)
                 .ToList();
             ViewData["Listds"] = bookscategory;
+            List<ReviewBook> reviews = await data.Get_ReviewByBook(BookID);
+            if (reviews.Count() != 0)
+            {
+                ViewData["listrv"] = reviews;
+                ViewBag.countRV = reviews[0].Count;
+            }
+            else
+            {
+                ViewBag.countRV = 0;
+            }
             return View(book);
         }
     }

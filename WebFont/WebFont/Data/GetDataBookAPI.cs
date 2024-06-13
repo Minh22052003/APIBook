@@ -63,5 +63,15 @@ namespace WebFont.Data
             categories = JsonConvert.DeserializeObject<List<Category>>(responsData);
             return categories;
         }
+
+        public async Task<List<ReviewBook>> Get_ReviewByBook(int idbook)
+        {
+            List<ReviewBook> reviews;
+            string get_ReviewByBook = $"https://localhost:44380/api/BookGetData/Get_ReviewByBook?idbook={idbook}";
+            HttpResponseMessage response = await _httpClient.GetAsync(get_ReviewByBook);
+            string responsData = await response.Content.ReadAsStringAsync();
+            reviews = JsonConvert.DeserializeObject<List<ReviewBook>>(responsData) ;
+            return reviews;
+        }
     }
 }
