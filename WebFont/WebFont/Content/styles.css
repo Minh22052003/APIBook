@@ -16,6 +16,8 @@ body {
     background-color: var(--bg-light);
 }
 
+
+
 :root {
     --bg-header: #3b5d50;
     --bg-footer: rgba(0, 80, 20, 0.039);

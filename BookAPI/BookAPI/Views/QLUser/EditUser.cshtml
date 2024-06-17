@@ -1,0 +1,85 @@
+﻿@model BookAPI.Models.User
+
+@{
+    ViewBag.Title = "Edit User Status";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Edit User Status</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserID)
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Username, "User Name:", htmlAttributes: new { @class = "control-label col-md-5 text-white" })
+            <div class="col-md-10">
+                <span class="form-control-plaintext text-white">@Html.DisplayFor(model => model.Username)</span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.FullName, "Full Name:", htmlAttributes: new { @class = "control-label col-md-5 text-white" })
+            <div class="col-md-10">
+                <span class="form-control-plaintext text-white">@Html.DisplayFor(model => model.FullName)</span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Email, "Email:", htmlAttributes: new { @class = "control-label col-md-5 text-white" })
+            <div class="col-md-10">
+                <span class="form-control-plaintext text-white">@Html.DisplayFor(model => model.Email)</span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.BirthDate, "Birth Date:", htmlAttributes: new { @class = "control-label col-md-5 text-white" })
+            <div class="col-md-10">
+                <span class="form-control-plaintext text-white">@Html.DisplayFor(model => model.BirthDate)</span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Gender, "Gender:", htmlAttributes: new { @class = "control-label col-md-5 text-white" })
+            <div class="col-md-10">
+                <span class="form-control-plaintext text-white">@Html.DisplayFor(model => model.Gender)</span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Role, "Role:", htmlAttributes: new { @class = "control-label col-md-5 text-white" })
+            <div class="col-md-10">
+                <span class="form-control-plaintext text-white">@Html.DisplayFor(model => model.Role)</span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Status, "Status:", htmlAttributes: new { @class = "control-label col-md-5 text-white" })
+            <div class="col-md-10">
+                <div class="radio text-white">
+                    @Html.RadioButtonFor(model => model.Status, 1) Active
+                </div>
+                <div class="radio text-white">
+                    @Html.RadioButtonFor(model => model.Status, 0) Inactive
+                </div>
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

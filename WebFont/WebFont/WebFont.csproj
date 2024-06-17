@@ -133,6 +133,7 @@
     <Compile Include="Models\ReviewBook.cs" />
     <Compile Include="Models\ReviewUser.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserNotPass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -176,13 +177,16 @@
     <Content Include="Content\images\support.svg" />
     <Content Include="Content\images\truck.svg" />
     <Content Include="Content\images\why-choose-us-img.jpg" />
+    <Content Include="Content\js\index.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\notify.js" />
+    <Content Include="Content\js\orders.js" />
     <Content Include="Content\js\validator.js" />
     <Content Include="Content\notify.css" />
     <Content Include="Content\product.css" />
     <Content Include="Content\shop.css" />
     <Content Include="Content\styles.css" />
+    <Content Include="Content\user.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -225,6 +229,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Library\Index.cshtml" />
     <Content Include="Views\Library\Product.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Shared\LeftMenuUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

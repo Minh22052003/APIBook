@@ -308,11 +308,26 @@
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\UserNotPass.cs" />
     <Compile Include="Models\User_Book.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\assets\css\add-book.css" />
+    <Content Include="Content\assets\css\dashboard.css" />
+    <Content Include="Content\assets\css\notify.css" />
+    <Content Include="Content\assets\css\slide.css" />
+    <Content Include="Content\assets\css\styles.css" />
+    <Content Include="Content\assets\css\users.css" />
+    <Content Include="Content\assets\images\doi-thua.jpg" />
+    <Content Include="Content\assets\images\hail-mary.jpg" />
+    <Content Include="Content\assets\images\icon-down.png" />
+    <Content Include="Content\assets\images\icon-xmark.png" />
+    <Content Include="Content\assets\js\dashboard.js" />
+    <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\js\notify.js" />
+    <Content Include="Content\assets\js\validator.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -383,6 +398,10 @@
     <Content Include="Views\QLBook\Index.cshtml" />
     <Content Include="Views\QLAuthors\Index.cshtml" />
     <Content Include="Views\QLUser\Index.cshtml" />
+    <Content Include="Views\Shared\TopNav.cshtml" />
+    <Content Include="Views\Shared\MenuLeft.cshtml" />
+    <Content Include="Views\QLBook\EditBook.cshtml" />
+    <Content Include="Views\QLUser\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

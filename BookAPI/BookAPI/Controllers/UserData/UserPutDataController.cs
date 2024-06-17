@@ -23,7 +23,7 @@ namespace BookAPI.Controllers.UserData
 
         //Gọi API api/UserPutData/UpdateUser
         [HttpPut]
-        public async Task<HttpResponseMessage> UpdateUser(User request)
+        public async Task<HttpResponseMessage> UpdateUser(UserNotPass request)
         {
             try
             {

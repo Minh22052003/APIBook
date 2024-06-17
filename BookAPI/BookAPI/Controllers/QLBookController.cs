@@ -14,7 +14,7 @@ namespace BookAPI.Controllers
     public class QLBookController : Controller
     {
         private readonly ModelBook _context;
-        public int pageSize = 5;
+        public int pageSize = 10;
         public readonly DatafromAPIController datafromAPIController;
         public QLBookController(ModelBook context)
         {
@@ -40,19 +40,57 @@ namespace BookAPI.Controllers
             ViewBag.TotalPages = (int)Math.Ceiling(_context.Books.Count() / (double)pageSize);
             ViewBag.CurrentPage = pageNumber;
             return View(books.ToList());
-            
         }
         [HttpPost]
         public async Task<ActionResult> SubmitInputAsync(string inputString)
         {
             int q = 1;
-            //1: gọi theo tên sách
-            //2: Gọi theo tên chủ đề
             BookdataFrAPI bookdataFrAPI = await datafromAPIController.SearchBooksAsync(q, inputString, 40);
             await datafromAPIController.ProcessBookDataAsync(bookdataFrAPI);
-            // Xử lý chuỗi nhập vào nếu cần
             return RedirectToAction("Index");
         }
+        public ActionResult EditBook(int idbook)
+        {
+            var books = _context.Books
+                    .Include("Publisher")
+                    .Include("Authors")
+                    .Include("Categories")
+                    .FirstOrDefault(b => b.ID == idbook);
+            // Prepare SelectList for Publisher
+            var publishers = _context.Publishers.ToList();
+            ViewBag.PublisherID = new SelectList(publishers, "ID", "PublisherName", books.PublisherID);
+            return View(books);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditBook(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                var bookInDb = _context.Books.FirstOrDefault(b => b.ID == book.ID);
+                if (bookInDb == null)
+                {
+                    return HttpNotFound();
+                }
+
+                bookInDb.Title = book.Title;
+                bookInDb.DescriptionB = book.DescriptionB;
+                bookInDb.PublisherID = book.PublisherID;
+                bookInDb.PublishedDate = book.PublishedDate;
+
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            // Prepare SelectList again if model state is invalid
+            var publishers = _context.Publishers.ToList();
+            ViewBag.PublisherID = new SelectList(publishers, "ID", "PublisherName", book.PublisherID);
+
+            return View(book);
+        }
+
+
     }
-    
+
 }

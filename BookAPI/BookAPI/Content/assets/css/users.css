@@ -1,0 +1,5 @@
+
+.content .card-body .table th:nth-child(4),
+.content .card-body .table td:nth-child(4){
+    min-width: 18rem;
+}

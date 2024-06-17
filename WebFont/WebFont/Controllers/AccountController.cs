@@ -20,6 +20,7 @@ namespace WebFont.Controllers
     {
         string URLLogin = "https://localhost:44380/api/UserPostData/Login";
         string URLGetUserName = "https://localhost:44380/api/UserGetData/Get_UserName";
+        string URLPutUser = "https://localhost:44380/api/UserPutData/UpdateUser";
         private readonly HttpClient _httpClient;
 
         public AccountController()
@@ -29,8 +30,78 @@ namespace WebFont.Controllers
         // GET: Account
         public ActionResult Index()
         {
-            return View();
+            UserNotPass user = new UserNotPass();
+            // Lấy cookie xác thực
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                // Giải mã cookie để lấy thông tin user
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    user.Username = authTicket.Name;
+                    string[] userData = authTicket.UserData.Split(';');
+                    int userId;
+                    if (int.TryParse(userData[0], out userId))
+                    {
+                        user.UserID = userId;
+                    }
+                    user.FullName = userData[1];
+                    user.Email = userData[2];
+                    user.BirthDate = DateTime.Parse(userData[3]);
+                    user.Gender = userData[4];
+                }
+            }
+            return View(user);
         }
+
+        [HttpPost]
+        public async Task<JsonResult> SaveChangesAsync(UserNotPass user)
+        {
+            if (ModelState.IsValid)
+            {
+                string apiUrl = URLPutUser; // URL API thực tế
+                string json = JsonConvert.SerializeObject(user);
+                StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await _httpClient.PutAsync(apiUrl, data); // Sử dụng PutAsync để cập nhật
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    UpdateAuthCookie(user);
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    return Json(new { success = false, error = errorContent });
+                }
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return Json(new { success = false, error = "Model state is invalid", details = errors });
+            }
+        }
+
+        private void UpdateAuthCookie(UserNotPass user)
+        {
+            var userData = $"{user.UserID};{user.FullName};{user.Email};{user.BirthDate};{user.Gender}";
+            var authTicket = new FormsAuthenticationTicket(
+                1, user.Username, DateTime.Now, DateTime.Now.AddHours(2), false, userData);
+
+            string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+            {
+                HttpOnly = true
+            };
+
+            HttpContext.Response.Cookies.Add(authCookie);
+        }
+
+
+
         public ActionResult Login()
         {
             return View();

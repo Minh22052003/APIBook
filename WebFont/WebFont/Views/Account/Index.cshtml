@@ -1,0 +1,74 @@
+﻿@model WebFont.Models.UserNotPass
+
+@{
+    ViewBag.Title = "User Profile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="card-body">
+    <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control mb-1" id="username" value="@Model.Username" readonly>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" value="@Model.FullName">
+    </div>
+    <div class="form-group">
+        <label class="form-label">E-mail</label>
+        <input type="text" class="form-control mb-1" id="email" value="@Model.Email">
+        <div class="alert alert-warning mt-3">
+            Your email is not confirmed. Please check your inbox.<br>
+            <a href="javascript:void(0)">Resend confirmation</a>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Gender</label>
+        <input type="text" class="form-control" id="gender" value="@Model.Gender">
+    </div>
+    <div class="form-group">
+        <label class="form-label">Birthdate</label>
+        <input type="date" class="form-control" id="birthdate" value="@((Model.BirthDate != null) ? Model.BirthDate.Value.ToString("yyyy-MM-dd") : string.Empty)">
+    </div>
+
+</div>
+<div class="text-right mt-3">
+    <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>&nbsp;
+    <button type="button" class="btn btn-default">Cancel</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#saveChanges').click(function () {
+            var user = {
+                UserID: '@Model.UserID', // Đảm bảo ID người dùng được truyền đi
+                Username: $('#username').val(),
+                FullName: $('#name').val(),
+                Email: $('#email').val(),
+                Gender: $('#gender').val(),
+                BirthDate: $('#birthdate').val(),
+                Password: $('#password').val()
+            };
+
+            $.ajax({
+                url: '@Url.Action("SaveChangesAsync", "Account")',
+                type: 'POST',
+                data: JSON.stringify(user),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        alert('Changes saved successfully!');
+                        window.location.href = '@Url.Action("Index", "Account")';
+                    } else {
+                        alert('Failed to save changes: ' + response.error + '\nDetails: ' + response.details.join('\n'));
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('An error occurred: ' + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>

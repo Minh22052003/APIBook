@@ -3,60 +3,40 @@
   "WorkspaceRootPath": "D:\\prReadingBook\\BookAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\views\\qlbook\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\views\\qlbook\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|d:\\prreadingbook\\bookapi\\bookapi\\controllers\\userdata\\userputdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\userdata\\userputdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\controllers\\qlbookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\qlbookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|d:\\prreadingbook\\bookapi\\bookapi\\controllers\\bookdata\\bookgetdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\bookdata\\bookgetdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\controllers\\bookdata\\bookdeletedatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\bookdata\\bookdeletedatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\controllers\\bookdata\\bookpostdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\bookdata\\bookpostdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\controllers\\bookdata\\bookputdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\bookdata\\bookputdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\views\\shared\\_layout1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\views\\shared\\_layout1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\controllers\\bookdata\\datafromapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\bookdata\\datafromapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\models\\bookdatafrapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\models\\bookdatafrapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\views\\qlauthors\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\views\\qlauthors\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\models\\usernotpass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\models\\usernotpass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\views\\qluser\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\views\\qluser\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\controllers\\qlusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\qlusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\controllers\\qlbookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\controllers\\qlbookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\views\\qlbook\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\views\\qlbook\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\views\\qlbook\\editbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\views\\qlbook\\editbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\models\\publisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\models\\publisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|D:\\prReadingBook\\BookAPI\\bookapi\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4FB340CB-9A5C-4F2B-B047-EB42A7C98C01}|BookAPI\\BookAPI.csproj|solutionrelative:bookapi\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,174 +58,112 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BookGetDataController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\BookGetDataController.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Controllers\\BookData\\BookGetDataController.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\BookGetDataController.cs",
-              "RelativeToolTip": "BookAPI\\Controllers\\BookData\\BookGetDataController.cs",
-              "ViewState": "AQIAAIgBAAAAAAAAAAAiwIoBAAA0AAAA",
+              "DocumentIndex": 1,
+              "Title": "UserNotPass.cs",
+              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\UserNotPass.cs",
+              "RelativeDocumentMoniker": "BookAPI\\Models\\UserNotPass.cs",
+              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\UserNotPass.cs",
+              "RelativeToolTip": "BookAPI\\Models\\UserNotPass.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAQwB4AAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T13:08:49.86Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BookPutDataController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\BookPutDataController.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Controllers\\BookData\\BookPutDataController.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\BookPutDataController.cs",
-              "RelativeToolTip": "BookAPI\\Controllers\\BookData\\BookPutDataController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T12:38:44.733Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BookPostDataController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\BookPostDataController.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Controllers\\BookData\\BookPostDataController.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\BookPostDataController.cs",
-              "RelativeToolTip": "BookAPI\\Controllers\\BookData\\BookPostDataController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAADIAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T12:38:45.527Z"
+              "WhenOpened": "2024-06-16T17:12:55.315Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLBook\\Index.cshtml",
-              "RelativeDocumentMoniker": "BookAPI\\Views\\QLBook\\Index.cshtml",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLBook\\Index.cshtml",
-              "RelativeToolTip": "BookAPI\\Views\\QLBook\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcBAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T11:04:29.922Z",
+              "Title": "UserPutDataController.cs",
+              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\UserData\\UserPutDataController.cs",
+              "RelativeDocumentMoniker": "BookAPI\\Controllers\\UserData\\UserPutDataController.cs",
+              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\UserData\\UserPutDataController.cs",
+              "RelativeToolTip": "BookAPI\\Controllers\\UserData\\UserPutDataController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwCMAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-16T15:25:56.004Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "_Layout1.cshtml",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\Shared\\_Layout1.cshtml",
-              "RelativeDocumentMoniker": "BookAPI\\Views\\Shared\\_Layout1.cshtml",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\Shared\\_Layout1.cshtml",
-              "RelativeToolTip": "BookAPI\\Views\\Shared\\_Layout1.cshtml",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAAAFkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T12:10:25.828Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "QLBookController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\QLBookController.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Controllers\\QLBookController.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\QLBookController.cs",
-              "RelativeToolTip": "BookAPI\\Controllers\\QLBookController.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAuwBwAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T17:05:17.285Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BookDeleteDataController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\BookDeleteDataController.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Controllers\\BookData\\BookDeleteDataController.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\BookDeleteDataController.cs",
-              "RelativeToolTip": "BookAPI\\Controllers\\BookData\\BookDeleteDataController.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAgwDoAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T04:10:03.415Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BookdataFrAPI.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\BookdataFrAPI.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Models\\BookdataFrAPI.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\BookdataFrAPI.cs",
-              "RelativeToolTip": "BookAPI\\Models\\BookdataFrAPI.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T08:50:53.157Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DatafromAPIController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\DatafromAPIController.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Controllers\\BookData\\DatafromAPIController.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\BookData\\DatafromAPIController.cs",
-              "RelativeToolTip": "BookAPI\\Controllers\\BookData\\DatafromAPIController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAuwAYAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T13:02:48.402Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Profile.cshtml",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\Account\\Profile.cshtml",
-              "RelativeDocumentMoniker": "BookAPI\\Views\\Account\\Profile.cshtml",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\Account\\Profile.cshtml",
-              "RelativeToolTip": "BookAPI\\Views\\Account\\Profile.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAACHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T11:02:53.517Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLAuthors\\Index.cshtml",
-              "RelativeDocumentMoniker": "BookAPI\\Views\\QLAuthors\\Index.cshtml",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLAuthors\\Index.cshtml",
-              "RelativeToolTip": "BookAPI\\Views\\QLAuthors\\Index.cshtml",
-              "ViewState": "AQIAAFoAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T12:00:18.632Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Author.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\Author.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Models\\Author.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\Author.cs",
-              "RelativeToolTip": "BookAPI\\Models\\Author.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABcAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:01:38.798Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "QLUserController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\QLUserController.cs",
-              "RelativeDocumentMoniker": "BookAPI\\Controllers\\QLUserController.cs",
-              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\QLUserController.cs",
-              "RelativeToolTip": "BookAPI\\Controllers\\QLUserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:12:22.562Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLUser\\Index.cshtml",
               "RelativeDocumentMoniker": "BookAPI\\Views\\QLUser\\Index.cshtml",
               "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLUser\\Index.cshtml",
               "RelativeToolTip": "BookAPI\\Views\\QLUser\\Index.cshtml",
-              "ViewState": "AQIAAH4AAAAAAAAAAAAmwJ8AAAAdAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACYAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T12:13:21.945Z"
+              "WhenOpened": "2024-06-14T15:48:54.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Publisher.cs",
+              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\Publisher.cs",
+              "RelativeDocumentMoniker": "BookAPI\\Models\\Publisher.cs",
+              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\Publisher.cs",
+              "RelativeToolTip": "BookAPI\\Models\\Publisher.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T17:03:27.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EditBook.cshtml",
+              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLBook\\EditBook.cshtml",
+              "RelativeDocumentMoniker": "BookAPI\\Views\\QLBook\\EditBook.cshtml",
+              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLBook\\EditBook.cshtml",
+              "RelativeToolTip": "BookAPI\\Views\\QLBook\\EditBook.cshtml",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAAD4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-13T16:35:55.084Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLBook\\Index.cshtml",
+              "RelativeDocumentMoniker": "BookAPI\\Views\\QLBook\\Index.cshtml",
+              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\QLBook\\Index.cshtml",
+              "RelativeToolTip": "BookAPI\\Views\\QLBook\\Index.cshtml",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAMwEQAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-11T11:04:29.922Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QLBookController.cs",
+              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\QLBookController.cs",
+              "RelativeDocumentMoniker": "BookAPI\\Controllers\\QLBookController.cs",
+              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Controllers\\QLBookController.cs",
+              "RelativeToolTip": "BookAPI\\Controllers\\QLBookController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAmwDMAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-08T17:05:17.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\Account\\Profile.cshtml",
+              "RelativeDocumentMoniker": "BookAPI\\Views\\Account\\Profile.cshtml",
+              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Views\\Account\\Profile.cshtml",
+              "RelativeToolTip": "BookAPI\\Views\\Account\\Profile.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-11T11:02:53.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Book.cs",
+              "DocumentMoniker": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\Book.cs",
+              "RelativeDocumentMoniker": "BookAPI\\Models\\Book.cs",
+              "ToolTip": "D:\\prReadingBook\\BookAPI\\BookAPI\\Models\\Book.cs",
+              "RelativeToolTip": "BookAPI\\Models\\Book.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwBkAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T14:51:46.28Z"
             }
           ]
         }

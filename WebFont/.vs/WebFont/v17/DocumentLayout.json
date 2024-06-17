@@ -3,44 +3,32 @@
   "WorkspaceRootPath": "D:\\prReadingBook\\WebFont\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|d:\\prreadingbook\\webfont\\webfont\\content\\product.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\content\\product.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|d:\\prreadingbook\\webfont\\webfont\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|d:\\prreadingbook\\webfont\\webfont\\controllers\\librarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\controllers\\librarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\views\\library\\product.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\views\\library\\product.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\views\\library\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\views\\library\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\data\\getdatabookapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\data\\getdatabookapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\models\\reviewbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\models\\reviewbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\models\\usernotpass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\models\\usernotpass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\models\\reviewuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\models\\reviewuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\models\\reviewbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\models\\reviewbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\views\\shared\\topnav.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\views\\shared\\topnav.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|D:\\prReadingBook\\WebFont\\webfont\\views\\library\\product.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{04997147-C031-4A67-8C6C-0619E6C7C046}|WebFont\\WebFont.csproj|solutionrelative:webfont\\views\\library\\product.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,32 +50,68 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "product.css",
-              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Content\\product.css",
-              "RelativeDocumentMoniker": "WebFont\\Content\\product.css",
-              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Content\\product.css",
-              "RelativeToolTip": "WebFont\\Content\\product.css",
+              "DocumentIndex": 2,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "WebFont\\Views\\Account\\Login.cshtml",
+              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "WebFont\\Views\\Account\\Login.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-06-13T12:22:19.238Z",
-              "EditorCaption": ""
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-16T13:41:32.239Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
+              "Title": "UserNotPass.cs",
+              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Models\\UserNotPass.cs",
+              "RelativeDocumentMoniker": "WebFont\\Models\\UserNotPass.cs",
+              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Models\\UserNotPass.cs",
+              "RelativeToolTip": "WebFont\\Models\\UserNotPass.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAAB4AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-16T17:09:38.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ReviewUser.cs",
               "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Models\\ReviewUser.cs",
               "RelativeDocumentMoniker": "WebFont\\Models\\ReviewUser.cs",
               "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Models\\ReviewUser.cs",
               "RelativeToolTip": "WebFont\\Models\\ReviewUser.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T11:48:22.225Z"
+              "WhenOpened": "2024-06-16T17:09:07.655Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "WebFont\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "WebFont\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAADwv0AAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-16T12:33:18.486Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Account\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebFont\\Views\\Account\\Index.cshtml",
+              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Account\\Index.cshtml",
+              "RelativeToolTip": "WebFont\\Views\\Account\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-15T09:51:06.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ReviewBook.cs",
               "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Models\\ReviewBook.cs",
               "RelativeDocumentMoniker": "WebFont\\Models\\ReviewBook.cs",
@@ -99,88 +123,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "WebFont\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "WebFont\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T04:50:38.09Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Product.cshtml",
               "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Library\\Product.cshtml",
               "RelativeDocumentMoniker": "WebFont\\Views\\Library\\Product.cshtml",
               "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Library\\Product.cshtml",
               "RelativeToolTip": "WebFont\\Views\\Library\\Product.cshtml",
-              "ViewState": "AQIAACQAAAAAAAAAAAAAADIAAAArAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAADIAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-13T04:44:43.321Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Book.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Models\\Book.cs",
-              "RelativeDocumentMoniker": "WebFont\\Models\\Book.cs",
-              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Models\\Book.cs",
-              "RelativeToolTip": "WebFont\\Models\\Book.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABAAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T04:42:33.338Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LibraryController.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Controllers\\LibraryController.cs",
-              "RelativeDocumentMoniker": "WebFont\\Controllers\\LibraryController.cs",
-              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Controllers\\LibraryController.cs",
-              "RelativeToolTip": "WebFont\\Controllers\\LibraryController.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAQwEMAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T04:41:49.042Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GetDataBookAPI.cs",
-              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Data\\GetDataBookAPI.cs",
-              "RelativeDocumentMoniker": "WebFont\\Data\\GetDataBookAPI.cs",
-              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Data\\GetDataBookAPI.cs",
-              "RelativeToolTip": "WebFont\\Data\\GetDataBookAPI.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAgwEIAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T03:18:24.261Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Library\\Index.cshtml",
-              "RelativeDocumentMoniker": "WebFont\\Views\\Library\\Index.cshtml",
-              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Library\\Index.cshtml",
-              "RelativeToolTip": "WebFont\\Views\\Library\\Index.cshtml",
-              "ViewState": "AQIAACQAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-13T12:07:02.898Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TopNav.cshtml",
-              "DocumentMoniker": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Shared\\TopNav.cshtml",
-              "RelativeDocumentMoniker": "WebFont\\Views\\Shared\\TopNav.cshtml",
-              "ToolTip": "D:\\prReadingBook\\WebFont\\WebFont\\Views\\Shared\\TopNav.cshtml",
-              "RelativeToolTip": "WebFont\\Views\\Shared\\TopNav.cshtml",
-              "ViewState": "AQIAADkAAAAAAAAAAAAAAA4AAABbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T15:49:08.997Z"
             }
           ]
         }

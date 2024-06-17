@@ -1,241 +1,62 @@
 ﻿@model IEnumerable<BookAPI.Models.User>
 @{
-    ViewBag.Title = "Book List";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
-    <style>
-        table, th, td {
-            border: 1px solid #868585;
-        }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+<div class="vh-100 content-wrapper px-2 px-lg-4">
+    <h4 class="p-3 ps-lg-0 fs-4 text-light fw-semibold">Quản lý sách</h4>
 
-        th, td {
-            text-align: left;
-            padding: 10px;
-        }
-
-        table tr:nth-child(odd) {
-            background-color: #eee;
-        }
-
-        table tr:nth-child(even) {
-            background-color: white;
-        }
-
-        th.sorted-asc:after {
-            content: ' \25B2'; /* Unicode for up arrow */
-        }
-
-        th.sorted-desc:after {
-            content: ' \25BC'; /* Unicode for down arrow */
-        }
-
-        .tr1 {
-            background-color: lightskyblue !important;
-            position: -webkit-sticky; /* for Safari */
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-
-        .top-search {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 4px solid #020d18;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-            .top-search select {
-                flex: 1;
-                height: 46px;
-                background-color: black;
-                font-family: 'Nunito', sans-serif;
-                font-size: 16px;
-                color: #abb7c4;
-                font-weight: 300;
-                border: none;
-                padding: 0 10px;
-                border-right: 1px solid #020d18;
-                text-transform: uppercase;
-                padding-right: 30px;
-            }
-
-            .top-search input[type="text"] {
-                flex: 2;
-                height: 46px;
-                background-color: #233a50;
-                font-family: 'Nunito', sans-serif;
-                font-size: 16px;
-                color: #000;
-                font-weight: 300;
-                border: none;
-                padding: 0 10px;
-                background: url('../images/uploads/topsearch.png') no-repeat right 20px center;
-            }
-
-        .search-button {
-            height: 46px;
-            padding: 0 20px;
-            background-color: #3b5998;
-            color: #fff;
-            border: none;
-            border-radius: 0 3px 3px 0;
-            cursor: pointer;
-        }
-
-            .search-button:hover {
-                background-color: #4469b0;
-            }
-    </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-ZenhBwBW9N8IpGlpcoEteNifv8KTjwXk1Am7LkL5MZ9zMNDXOeMyF/+TqMziT25C" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container mt-4">
-        <h1 class="mb-4">User List</h1>
-
-        <table class="table" id="bookTable">
-            <thead>
-                <tr class="tr1">
-                    <th data-column="ID">
-                        ID
-                    </th>
-                    <th data-column="Username">
-                        Username
-                    </th>
-                    <th ata-column="FullName">
-                        FullName
-                    </th>
-                    <th data-column="Email">
-                        Email
-                    </th>
-                    <th data-column="BirthDate">
-                        BirthDate
-                    </th>
-                    <th data-column="Gender">
-                        Gender
-                    </th>
-                    <th data-column="Role">
-                        Role
-                    </th>
-                    <th data-column="Status">
-                        Status
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.UserID</td>
-                        <td>@item.Username</td>
-                        <td>@item.FullName</td>
-                        <td>@item.Email</td>
-                        <td>@item.BirthDate</td>
-                        <td>@item.Gender</td>
-                        <td>@item.Role</td>
-                        <td>
-                            @if (item.Status == 1)
-                            {
-                                <span class="text-success">Active</span>
-                            }
-                            else if (item.Status == 0)
-                            {
-                                <span class="text-danger">Inactive</span>
-                            }
-                            else
-                            {
-                                <span class="text-warning">Unknown</span>
-                            }
-                        </td>
-                        <td>
-                            <a class="btn btn-warning btn-outline-secondary" ">Edit</a>
-                            <h1></h1>
-                            <a class="btn btn-danger btn-outline-secondary" ">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div class="dataTables_paginate paging_simple_numbers" id="dataTables-phim_paginate">
-            @if (ViewBag.CurrentPage > 1)
-            {
-                <a class="paginate_button next" href="@Url.Action("Index", "QLBook", new { page = ViewBag.CurrentPage - 1 })">Previous</a>
-            }
-            <span>
-                @for (int i = 1; i <= ViewBag.TotalPages; i++)
-                {
-                    if (i == ViewBag.CurrentPage)
-                    {
-                        <a class="paginate_button current">@i</a>
-                    }
-                    else
-                    {
-                        <a class="paginate_button" href="@Url.Action("Index", "QLBook", new { page = i })">@i</a>
-                    }
-                }
-            </span>
-            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-            {
-                <a class="paginate_button next" href="@Url.Action("Index", "QLBook", new { page = ViewBag.CurrentPage + 1 })">Next</a>
-            }
+    <div class="w-100 d-flex flex-wrap justify-content-between my-4">
+        <div class="d-flex form-search-book mb-4">
+            <input type="text" class="flex-1 h-100 form-control form-search-input" id="search-book-input" placeholder="Nhập tên người dùng">
+            <button type="button" class="ms-2 btn btn-primary py-0 fw-medium" id="search-book-button">Tìm kiếm</button>
         </div>
-
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2K8uLyrgkLJQIoizTvJJcofAqzWFOBTYBIbsa8Ubv9yRNk5u14dkzCq2QbEz" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const table = document.querySelector('table');
-            const headers = table.querySelectorAll('th.sortable');
-            let sortOrder = {};
+    <div class="card mb-4 w-100">
+        <div class="card-header d-flex flex-wrap justify-content-between align-items-center py-3">
+            <div class="mb-3 fs-5 fw-medium opacity-75"><i class="fas fa-table me-3"></i>Danh sách sách</div>
 
-            headers.forEach(header => {
-                header.addEventListener('click', function () {
-                    const column = this.getAttribute('data-column');
-                    const order = sortOrder[column] === 'asc' ? 'desc' : 'asc';
+            
+            <div class="card-body">
+                <table id="table-list-books" class="w-100 table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class=""><input type="checkbox" name="table-select-all" id="table-select-all"></th>
+                            <th class="col-4">Tên User</th>
+                            <th class="col-2">Full Name</th>
+                            <th class="col-1 text-center">Email</th>
+                            <th class="col-1 text-center">Ngày sinh</th>
+                            <th class="col-1 text-center">Giới tính</th>
+                            <th class="col-1 text-center">Quyền</th>
+                            <th class="col-1 text-center">Trạng thái</th>
+                            <th class="col-1 text-center">Chỉnh sửa</th>
+                        </tr>
+                    </thead>
 
-                    sortTableByColumn(table, column, order);
-                    sortOrder[column] = order;
-
-                    headers.forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
-                    this.classList.add(order === 'asc' ? 'sorted-asc' : 'sorted-desc');
-                });
-            });
-        });
-
-        function sortTableByColumn(table, column, order) {
-            const tbody = table.querySelector('tbody');
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-
-            const compare = (a, b) => {
-                const cellA = a.querySelector(`td[data-column="${column}"]`).innerText;
-                const cellB = b.querySelector(`td[data-column="${column}"]`).innerText;
-
-                if (cellA < cellB) {
-                    return order === 'asc' ? -1 : 1;
-                }
-                if (cellA > cellB) {
-                    return order === 'asc' ? 1 : -1;
-                }
-                return 0;
-            };
-
-            rows.sort(compare);
-            tbody.innerHTML = '';
-
-            rows.forEach(row => tbody.appendChild(row));
-        }
-    </script>
-
-</body>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><input type="checkbox" name="table-select"></td>
+                                <td class="table-title">@item.Username</td>
+                                <td class="table-author">@item.FullName</td>
+                                <td class="table-categories text-center ">@item.Email</td>
+                                <td class="table-publisher text-center ">@item.BirthDate</td>
+                                <td class="table-publisheddate text-center ">@item.Gender</td>
+                                <td class="table-publisheddate text-center ">@item.Role</td>
+                                <td class="table-image text-center ">@item.Status</td>
+                                <td>
+                                    <div class="w-100 h-100 d-flex justify-content-evenly">
+                                        <a href="@Url.Action("EditUser", "QLUser", new {iduser = item.UserID })" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a href="" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
