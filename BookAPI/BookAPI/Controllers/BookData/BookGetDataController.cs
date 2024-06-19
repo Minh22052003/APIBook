@@ -317,7 +317,8 @@ namespace BookAPI.Controllers.BookData
                              Categories = b.Categories.Select(c => c.CategoryName).ToList(),
                              b.PublishedDate,
                              b.BookLink,
-                             b.CoverImage
+                             b.CoverImage,
+                             h.ReadTime,
                          })
                         .ToList();
 
@@ -332,7 +333,8 @@ namespace BookAPI.Controllers.BookData
                 b.PublishedDate,
                 Rating = ScoreBook(b.ID),
                 b.BookLink,
-                b.CoverImage
+                b.CoverImage,
+                b.ReadTime,
             }).ToList();
 
             if (booksWithRating.Any())
@@ -402,6 +404,7 @@ namespace BookAPI.Controllers.BookData
                           where r.BookID == idbook
                           select new
                           {
+                              r.UserID,
                               r.User.Username,
                               r.User.FullName,
                               r.Content,

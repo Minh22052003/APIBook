@@ -42,18 +42,19 @@
                     </span>
                 </p>
 
-                <div class="my-4 opacity-75" data-rating="@item.Rating">
+                <div class="rating mb-2" data-rating="@item.Rating">
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
-                    (<span>@ViewBag.countRV</span> đánh giá)
+                    ( <span>@ViewBag.countRV</span> đánh giá)
                 </div>
 
 
                 <div class="product__button pt-4">
-                    <button class="buy-now me-2" type="button" onclick="window.location.href='@item.BookLink'">Đọc ngay</button>
+                    <button class="buy-now me-2" type="button" )"><a href="@Url.Action("ReadBook", "Library", new { idbook = item.ID ,bookLink = item.BookLink })">đọc</a></button>
+
                     <button class="add-to-cart" type="button"><i class="fa-solid fa-heart pe-2"></i>Thêm vào yêu thích</button>
                 </div>
             </div>
@@ -142,61 +143,190 @@
     }
 </div>
 
-<!-- Rating -->
+@if (ViewBag.Check == "True")
+{
+    <!-- Rating -->
+    <div class="rating container">
+        <h4>Đánh giá cuốn sách:</h4>
+
+        <form method="POST" action="/your-endpoint" id="reviewForm">
+            <div class="d-flex">
+                <div class="d-flex flex-column align-items-start">
+                    <div class="form-group">
+                        <label for="rating" class="form-label">Đánh giá:</label>
+                        <select id="rating" name="rating" class="form-control">
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewtext" class="form-label">Nhận xét</label>
+                        <textarea id="reviewtext" name="reviewtext" class="form-control" rows="3" cols="80"></textarea>
+                    </div>
+                    <button class="btn btn-primary mt-4 h-auto" type="submit">Gửi đánh giá</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+}
+
 <div class="rating container">
-    <h4>Đánh giá sản phẩm</h4>
-
-    <div class="d-flex">
-        <div class="d-flex align-items-center">
-            <div class="review__quantity">
-                <p class="fs-3 fw-bold"><span class="fs-1">0</span>/5</p>
-                <div class="rate">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+    <div class="List-review">
+        @foreach (var item in ViewData["listrv"] as List<WebFont.Models.ReviewBook>)
+        {
+            <div class="review">
+                <div class="reviewer">
+                    @if (@item.FullName == "null")
+                    {
+                        <span class="name">@item.Username</span>
+                    }
+                    else
+                    {
+                        <span class="name">@item.FullName</span>
+                    }
+                    <span class="date">@item.ReviewTime</span>
                 </div>
-                <span>(0 đánh giá)</span>
+                <div class="rating mb-2" data-rating="@item.Rating">
+                    <span class="fa-regular fa-star"></span>
+                    <span class="fa-regular fa-star"></span>
+                    <span class="fa-regular fa-star"></span>
+                    <span class="fa-regular fa-star"></span>
+                    <span class="fa-regular fa-star"></span>
+                </div>
+                <div class="content">@item.Content</div>
             </div>
-
-            <div class="review__chart">
-                <div class="d-flex align-items-center">
-                    5 <i class="fa-regular fa-star"></i>
-                    <div class="rating__progress"><span></span></div>
-                    <div class="rating__percent">0%</div>
-                </div>
-                <div class="d-flex align-items-center">
-                    5 <i class="fa-regular fa-star"></i>
-                    <div class="rating__progress"><span></span></div>
-                    <div class="rating__percent">0%</div>
-                </div>
-                <div class="d-flex align-items-center">
-                    5 <i class="fa-regular fa-star"></i>
-                    <div class="rating__progress"><span></span></div>
-                    <div class="rating__percent">0%</div>
-                </div>
-                <div class="d-flex align-items-center">
-                    5 <i class="fa-regular fa-star"></i>
-                    <div class="rating__progress"><span></span></div>
-                    <div class="rating__percent">0%</div>
-                </div>
-                <div class="d-flex align-items-center">
-                    5 <i class="fa-regular fa-star"></i>
-                    <div class="rating__progress"><span></span></div>
-                    <div class="rating__percent">0%</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex-grow-1 ps-5 text-center d-flex align-items-center">
-            <p class="review-status">
-                Chỉ có thành viên mới có thể viết nhận xét.
-                Vui lòng <a href="">đăng nhập</a> hoặc <a href="">đăng ký</a>.
-            </p>
-        </div>
+        }
     </div>
 </div>
+
+
+<style>
+    h4 {
+        margin-right: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .rating h4 {
+        margin-bottom: 20px;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .flex-column {
+        flex-direction: column;
+    }
+
+    .align-items-start {
+        align-items: flex-start;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem;
+    }
+
+    .h-auto {
+        height: auto;
+    }
+
+    .List-review {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .review {
+        width: 100%;
+        border-radius: 25px;
+        border-style: solid;
+        border-color: black;
+        margin: 20px;
+        padding: 10px;
+    }
+
+    .mb-2 {
+        margin: 0;
+    }
+
+    .reviewer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .name {
+        font-weight: bold;
+    }
+
+    .date {
+        color: #999;
+    }
+
+    .rating {
+        display: flex;
+        justify-content: start;
+        margin-bottom: 10px;
+    }
+
+    .star {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-image: url("star.png");
+        background-repeat: no-repeat;
+    }
+
+    .content {
+        font-size: 14px;
+    }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var ratings = document.querySelectorAll('.rating');
@@ -209,17 +339,20 @@
             }
         });
     });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var ratings = document.querySelectorAll('.my-4');
 
-        ratings.forEach(function (rating) {
-            var score = rating.getAttribute('data-rating');
-            var stars = rating.querySelectorAll('.fa-star');
-            for (var i = 0; i < score; i++) {
-                stars[i].classList.add('selected');
-            }
+    document.addEventListener('DOMContentLoaded', function () {
+        const stars = document.querySelectorAll('.fa-star');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', function () {
+                selectedRating = this.getAttribute('data-value');
+                stars.forEach(s => s.classList.remove('fa-solid', 'text-warning'));
+                for (let i = 0; i < selectedRating; i++) {
+                    stars[i].classList.add('fa-solid', 'text-warning');
+                }
+            });
         });
     });
+
 </script>

@@ -52,7 +52,7 @@ namespace BookAPI.Controllers.UserData
 
         //Gọi API api/UserPostData/Login
         [HttpPost]
-        public async Task<HttpResponseMessage> Login(UserLogin request)
+        public HttpResponseMessage Login(UserLogin request)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace BookAPI.Controllers.UserData
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-        
+
 
 
     }

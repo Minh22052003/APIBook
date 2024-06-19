@@ -10,6 +10,8 @@ namespace BookAPI.Models
         public ModelBook()
             : base("name=ModelBook")
         {
+            this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<Author> Authors { get; set; }

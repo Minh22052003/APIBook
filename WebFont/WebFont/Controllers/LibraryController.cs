@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebFont.Data;
 using WebFont.Models;
 
@@ -14,6 +15,7 @@ namespace WebFont.Controllers
     {
 
         public GetDataBookAPI data = new GetDataBookAPI();
+        public PostDataBookAPI post = new PostDataBookAPI();
         public int pageSize = 8;
 
         // GET: Llibrary
@@ -74,7 +76,70 @@ namespace WebFont.Controllers
             {
                 ViewBag.countRV = 0;
             }
+            ViewBag.Check = isAuthenticated().ToString();
+
             return View(book);
+        }
+
+        public async Task<ActionResult> ReadBook(string idbook, string bookLink)
+        {
+            if(isAuthenticated())
+            {
+                User_Book userbook = new User_Book();
+                HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (authCookie != null)
+                {
+                    // Giải mã cookie để lấy thông tin user
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                    if (authTicket != null)
+                    {
+                        string[] userData = authTicket.UserData.Split(';');
+                        if (userData.Length < 5)
+                        {
+                            return RedirectToAction("Login", "Account");
+                        }
+                        int userId;
+                        if (int.TryParse(userData[0], out userId))
+                        {
+                            userbook.UserID = userId;
+                        }
+                    }
+                }
+                userbook.BookID = int.Parse(idbook);
+                bool task = await post.Post_HistoryReadDataAsync(userbook);
+                return Redirect(bookLink);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
+        }
+
+
+
+        public bool isAuthenticated()
+        {
+            if (HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                try
+                {
+                    HttpCookie authCookie = HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                    string userData = authTicket.UserData;
+
+                    if (!string.IsNullOrEmpty(userData))
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error decoding authentication ticket: " + ex.Message);
+                }
+            }
+
+            return false;
         }
     }
 }

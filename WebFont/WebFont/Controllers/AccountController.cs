@@ -12,6 +12,7 @@ using System.Web.Configuration;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
+using WebFont.Data;
 using WebFont.Models;
 
 namespace WebFont.Controllers
@@ -21,10 +22,13 @@ namespace WebFont.Controllers
         string URLLogin = "https://localhost:44380/api/UserPostData/Login";
         string URLGetUserName = "https://localhost:44380/api/UserGetData/Get_UserName";
         string URLPutUser = "https://localhost:44380/api/UserPutData/UpdateUser";
+        string CreateAccUser = "https://localhost:44380/api/UserPostData/POST_CreateAccUser";
+        public GetDataBookAPI data;
         private readonly HttpClient _httpClient;
 
         public AccountController()
         {
+            data = new GetDataBookAPI();
             _httpClient = new HttpClient();
         }
         // GET: Account
@@ -41,6 +45,10 @@ namespace WebFont.Controllers
                 {
                     user.Username = authTicket.Name;
                     string[] userData = authTicket.UserData.Split(';');
+                    if (userData.Length < 5)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
                     int userId;
                     if (int.TryParse(userData[0], out userId))
                     {
@@ -116,7 +124,7 @@ namespace WebFont.Controllers
             {
                 //Gửi
                 string apiUrl = URLLogin;
-                LoginAcc loginuser = new LoginAcc { Username = username, Password = HashPassword(username,password) };
+                LoginAcc loginuser = new LoginAcc { Username = username, Password = password };
                 string json = JsonConvert.SerializeObject(loginuser);
                 StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, data);
@@ -150,11 +158,12 @@ namespace WebFont.Controllers
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     HttpContext.Response.Cookies.Add(authCookie);
 
-                    return View("Profile", user);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    return View("LoginFailed");
+                    ViewBag.ErrorMessage = "Sai tài khoản hoặc mật khẩu. Vui lòng kiểm tra lại.";
+                    return View();
                 }
             }
             catch (Exception ex)
@@ -164,6 +173,22 @@ namespace WebFont.Controllers
                 return View("Error");
             }
         }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                authCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(authCookie);
+            }
+
+            return RedirectToAction("Login", "Account");
+        }
+
 
 
         public ActionResult Register()
@@ -200,11 +225,11 @@ namespace WebFont.Controllers
 
             LoginAcc newUser = new LoginAcc();
             newUser.Username = username;
-            newUser.Password = HashPassword(username,password);
+            newUser.Password = password;
 
             string json = JsonConvert.SerializeObject(newUser);
             StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response1 = await _httpClient.PostAsync("https://localhost:44380/api/UserPostData/POST_CreateAccUser", data);
+            HttpResponseMessage response1 = await _httpClient.PostAsync(CreateAccUser, data);
 
             if (response1.IsSuccessStatusCode)
             {
@@ -218,63 +243,94 @@ namespace WebFont.Controllers
             }
         }
 
-        public ActionResult UpdateUser()
+        //public ActionResult UpdateUser()
+        //{
+        //    User user = new User();
+        //    // Lấy cookie xác thực
+        //    HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+        //    if (authCookie != null)
+        //    {
+        //        // Giải mã cookie để lấy thông tin user
+        //        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+        //        if (authTicket != null)
+        //        {
+        //            user.Username = authTicket.Name;
+        //            string[] userData = authTicket.UserData.Split(';');
+        //            int userId;
+        //            if (int.TryParse(userData[0], out userId))
+        //            {
+        //                user.UserID = userId;
+        //            }
+        //            user.FullName = userData[1];
+        //            user.Email = userData[2];
+        //            user.BirthDate = DateTime.Parse(userData[3]);
+        //            user.Gender = userData[4];
+        //        }
+        //    }
+        //    return View(user);
+        //}
+
+        //[HttpPost]
+        //public async Task<ActionResult> UpdateUser(string fullname, string email, string birthdate, string gender)
+        //{
+        //    User user = new User();
+        //    HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+        //    if (authCookie != null)
+        //    {
+        //        FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+        //        if (authTicket != null)
+        //        {
+        //            user.Username = authTicket.Name;
+        //            string[] userData = authTicket.UserData.Split(';');
+        //            user.UserID = int.Parse(userData[0]);
+        //            user.FullName = userData[1];
+        //            user.Email = userData[2];
+        //            user.BirthDate = DateTime.Parse(userData[3]);
+        //            user.Gender = userData[4];
+        //        }
+        //        user.FullName = fullname;
+        //        user.Email = email;
+        //        user.Gender = gender;
+        //        user.BirthDate = DateTime.Parse(birthdate);
+        //        return View(user);
+        //    }
+        //    return View();
+
+        //}
+
+        public async Task<ActionResult> UserRead()
         {
-            User user = new User();
-            // Lấy cookie xác thực
+            int userid =0;
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie != null)
             {
-                // Giải mã cookie để lấy thông tin user
                 FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
                 if (authTicket != null)
                 {
-                    user.Username = authTicket.Name;
                     string[] userData = authTicket.UserData.Split(';');
-                    int userId;
-                    if (int.TryParse(userData[0], out userId))
-                    {
-                        user.UserID = userId;
-                    }
-                    user.FullName = userData[1];
-                    user.Email = userData[2];
-                    user.BirthDate = DateTime.Parse(userData[3]);
-                    user.Gender = userData[4];
+                    userid = int.Parse(userData[0]);
                 }
             }
-            return View(user);
+            List<BookHistory> books = await data.Get_HistoryUser(userid);
+            return View(books);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> UpdateUser(string fullname, string email, string birthdate, string gender)
+        public async Task<ActionResult> Userfavorite()
         {
-            User user = new User();
+            int userid = 0;
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie != null)
             {
                 FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
                 if (authTicket != null)
                 {
-                    user.Username = authTicket.Name;
                     string[] userData = authTicket.UserData.Split(';');
-                    user.UserID = int.Parse(userData[0]);
-                    user.FullName = userData[1];
-                    user.Email = userData[2];
-                    user.BirthDate = DateTime.Parse(userData[3]);
-                    user.Gender = userData[4];
+                    userid = int.Parse(userData[0]);
                 }
-                user.FullName = fullname;
-                user.Email = email;
-                user.Gender = gender;
-                user.BirthDate = DateTime.Parse(birthdate);
-                return View(user);
             }
-            return View();
-
+            List<Book> books = await data.Get_FavoriteUser(userid);
+            return View(books);
         }
-
-
-
 
         public static string HashPassword(string username, string password)
         {
@@ -301,6 +357,13 @@ namespace WebFont.Controllers
             public string Username1 { get; set; }
         }
 
+        [HttpGet]
+        public JsonResult IsAuthenticated()
+        {
+            bool isAuthenticated = User.Identity.IsAuthenticated;
+            return Json(isAuthenticated, JsonRequestBehavior.AllowGet);
+        }
 
     }
+    
 }

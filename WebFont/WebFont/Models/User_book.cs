@@ -5,8 +5,9 @@ using System.Web;
 
 namespace WebFont.Models
 {
-    public class ReviewUser
+    public class User_Book
     {
-        
+        public int UserID { get; set; }
+        public int BookID { get; set; }
     }
 }
