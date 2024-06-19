@@ -116,6 +116,41 @@ namespace WebFont.Controllers
             
         }
 
+        public async Task<ActionResult> LoveBook(string idbook)
+        {
+            if (isAuthenticated())
+            {
+                User_Book userbook = new User_Book();
+                HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (authCookie != null)
+                {
+                    // Giải mã cookie để lấy thông tin user
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                    if (authTicket != null)
+                    {
+                        string[] userData = authTicket.UserData.Split(';');
+                        if (userData.Length < 5)
+                        {
+                            return RedirectToAction("Login", "Account");
+                        }
+                        int userId;
+                        if (int.TryParse(userData[0], out userId))
+                        {
+                            userbook.UserID = userId;
+                        }
+                    }
+                }
+                userbook.BookID = int.Parse(idbook);
+                bool task = await post.Post_FavoriteDataAsync(userbook);
+                return null;
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+        }
+
 
 
         public bool isAuthenticated()

@@ -15,11 +15,15 @@ namespace WebFont.Data
     {
         string Get_AllBook = "https://localhost:44380/api/BookGetData/Get_AllBook";
         string Get_BookCategory = "https://localhost:44380/api/BookGetData/Get_BookCategory";
+        string URLGetUserName = "https://localhost:44380/api/UserGetData/Get_UserName";
         private readonly HttpClient _httpClient;
         public GetDataBookAPI()
         {
             _httpClient = new HttpClient();
         }
+
+
+        //BOOK
         public async Task<List<Book>> Get_AllBookAsync()
         {
             List<Book> books;
@@ -27,6 +31,15 @@ namespace WebFont.Data
             string responsData = await response.Content.ReadAsStringAsync();
             books = JsonConvert.DeserializeObject<List<Book>>(responsData);
             return books;
+        }
+        public async Task<List<UsernameResponse>> Get_AllUsernameAsync()
+        {
+            List<UsernameResponse> tmp;
+            HttpResponseMessage response = await _httpClient.GetAsync(URLGetUserName);
+            string responsData = await response.Content.ReadAsStringAsync();
+            tmp = JsonConvert.DeserializeObject<List<UsernameResponse>>(responsData);
+
+            return tmp;
         }
         public async Task<List<Book>> Get_BookbyIDAsync(int id)
         {
@@ -73,6 +86,12 @@ namespace WebFont.Data
             reviews = JsonConvert.DeserializeObject<List<ReviewBook>>(responsData) ;
             return reviews;
         }
+
+
+
+
+
+        //USER
         public async Task<List<BookHistory>> Get_HistoryUser(int iduser)
         {
             List<BookHistory> book;

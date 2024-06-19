@@ -55,7 +55,7 @@
                 <div class="product__button pt-4">
                     <button class="buy-now me-2" type="button" )"><a href="@Url.Action("ReadBook", "Library", new { idbook = item.ID ,bookLink = item.BookLink })">đọc</a></button>
 
-                    <button class="add-to-cart" type="button"><i class="fa-solid fa-heart pe-2"></i>Thêm vào yêu thích</button>
+                    <button class="add-to-cart" type="button"><i class="fa-solid fa-heart pe-2"></i><a href="@Url.Action("LoveBook", "Library", new { idbook = item.ID })">Thêm vào yêu thích</a></button>
                 </div>
             </div>
         }
@@ -173,35 +173,38 @@
     </div>
 
 }
-
-<div class="rating container">
-    <div class="List-review">
-        @foreach (var item in ViewData["listrv"] as List<WebFont.Models.ReviewBook>)
-        {
-            <div class="review">
-                <div class="reviewer">
-                    @if (@item.FullName == "null")
-                    {
-                        <span class="name">@item.Username</span>
-                    }
-                    else
-                    {
-                        <span class="name">@item.FullName</span>
-                    }
-                    <span class="date">@item.ReviewTime</span>
+@if (ViewData["listrv"] != null)
+{
+    <div class="rating container">
+        <div class="List-review">
+            @foreach (var item in ViewData["listrv"] as List<WebFont.Models.ReviewBook>)
+            {
+                <div class="review">
+                    <div class="reviewer">
+                        @if (@item.FullName == "null")
+                        {
+                            <span class="name">@item.Username</span>
+                        }
+                        else
+                        {
+                            <span class="name">@item.FullName</span>
+                        }
+                        <span class="date">@item.ReviewTime</span>
+                    </div>
+                    <div class="rating mb-2" data-rating="@item.Rating">
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                    </div>
+                    <div class="content">@item.Content</div>
                 </div>
-                <div class="rating mb-2" data-rating="@item.Rating">
-                    <span class="fa-regular fa-star"></span>
-                    <span class="fa-regular fa-star"></span>
-                    <span class="fa-regular fa-star"></span>
-                    <span class="fa-regular fa-star"></span>
-                    <span class="fa-regular fa-star"></span>
-                </div>
-                <div class="content">@item.Content</div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
+}
+
 
 
 <style>

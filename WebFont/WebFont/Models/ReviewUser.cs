@@ -7,6 +7,13 @@ namespace WebFont.Models
 {
     public class ReviewUser
     {
-        
+        //r.ReviewID,
+        //r.BookID,
+        //r.Book.Title,
+        //r.Rating,
+        //n,
+        //r.Content,
+        //r.ReviewTime,
+
     }
 }

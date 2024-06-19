@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
@@ -19,16 +20,18 @@ namespace WebFont.Controllers
 {
     public class AccountController : Controller
     {
-        string URLLogin = "https://localhost:44380/api/UserPostData/Login";
-        string URLGetUserName = "https://localhost:44380/api/UserGetData/Get_UserName";
-        string URLPutUser = "https://localhost:44380/api/UserPutData/UpdateUser";
-        string CreateAccUser = "https://localhost:44380/api/UserPostData/POST_CreateAccUser";
-        public GetDataBookAPI data;
+        public GetDataBookAPI dataGet;
+        public PostDataBookAPI dataPost;
+        public PutDataBookAPI dataPut;
+        public DeleteDataBookAPI dataDel;
         private readonly HttpClient _httpClient;
 
         public AccountController()
         {
-            data = new GetDataBookAPI();
+            dataGet = new GetDataBookAPI();
+            dataPost = new PostDataBookAPI();
+            dataPut = new PutDataBookAPI();
+            dataDel = new DeleteDataBookAPI();
             _httpClient = new HttpClient();
         }
         // GET: Account
@@ -68,11 +71,7 @@ namespace WebFont.Controllers
         {
             if (ModelState.IsValid)
             {
-                string apiUrl = URLPutUser; // URL API thực tế
-                string json = JsonConvert.SerializeObject(user);
-                StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await _httpClient.PutAsync(apiUrl, data); // Sử dụng PutAsync để cập nhật
+                HttpResponseMessage response = await dataPut.UpdateUserAsync(user);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -82,8 +81,7 @@ namespace WebFont.Controllers
                 }
                 else
                 {
-                    string errorContent = await response.Content.ReadAsStringAsync();
-                    return Json(new { success = false, error = errorContent });
+                    return Json(new { success = false});
                 }
             }
             else
@@ -120,14 +118,18 @@ namespace WebFont.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(string username, string password)
         {
+            FormsAuthentication.SignOut();
+
+            HttpCookie authCookie1 = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie1 != null)
+            {
+                authCookie1.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(authCookie1);
+            }
             try
             {
-                //Gửi
-                string apiUrl = URLLogin;
-                LoginAcc loginuser = new LoginAcc { Username = username, Password = password };
-                string json = JsonConvert.SerializeObject(loginuser);
-                StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, data);
+                LoginAcc loginuser = new LoginAcc { Username = username, Password = HashPassword(username,password) };
+                HttpResponseMessage response = await dataPost.Post_LoginUserAsync(loginuser);
                 if (response.IsSuccessStatusCode)
                 {
                     //Nhận
@@ -210,10 +212,9 @@ namespace WebFont.Controllers
                 return View();
             }
 
-            List<UsernameResponse> lusername;
-            HttpResponseMessage response = await _httpClient.GetAsync(URLGetUserName);
-            string responsData = await response.Content.ReadAsStringAsync();
-            lusername = JsonConvert.DeserializeObject<List<UsernameResponse>>(responsData);
+            List<UsernameResponse> lusername = await dataGet.Get_AllUsernameAsync();
+
+
             foreach (var userName in lusername)
             {
                 if (username == userName.Username1)
@@ -225,20 +226,17 @@ namespace WebFont.Controllers
 
             LoginAcc newUser = new LoginAcc();
             newUser.Username = username;
-            newUser.Password = password;
+            newUser.Password = HashPassword(username, password);
+            bool check = await dataPost.Post_CreateAccUser(newUser);
 
-            string json = JsonConvert.SerializeObject(newUser);
-            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response1 = await _httpClient.PostAsync(CreateAccUser, data);
 
-            if (response1.IsSuccessStatusCode)
+            if (check)
             {
                 return RedirectToAction("Login");
             }
             else
             {
-                string errorMessage = await response1.Content.ReadAsStringAsync();
-                ViewBag.Error = "Không thể tạo tài khoản: " + errorMessage;
+                ViewBag.Error = "Không thể tạo tài khoản: ";
                 return View();
             }
         }
@@ -298,6 +296,8 @@ namespace WebFont.Controllers
 
         //}
 
+
+
         public async Task<ActionResult> UserRead()
         {
             int userid =0;
@@ -311,9 +311,29 @@ namespace WebFont.Controllers
                     userid = int.Parse(userData[0]);
                 }
             }
-            List<BookHistory> books = await data.Get_HistoryUser(userid);
+            List<BookHistory> books = await dataGet.Get_HistoryUser(userid);
             return View(books);
         }
+
+        public ActionResult DeleteHistory(int idbook)
+        {
+            int userid = 0;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    string[] userData = authTicket.UserData.Split(';');
+                    userid = int.Parse(userData[0]);
+                }
+            }
+            User_Book user_Book = new User_Book();
+            user_Book.BookID = idbook;
+            user_Book.UserID = userid;
+            _ = dataDel.DeleteHistory(user_Book);
+            return RedirectToAction("UserRead");
+        } 
 
         public async Task<ActionResult> Userfavorite()
         {
@@ -328,8 +348,28 @@ namespace WebFont.Controllers
                     userid = int.Parse(userData[0]);
                 }
             }
-            List<Book> books = await data.Get_FavoriteUser(userid);
+            List<Book> books = await dataGet.Get_FavoriteUser(userid);
             return View(books);
+        }
+
+        public ActionResult DeleteLove(int idbook)
+        {
+            int userid = 0;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    string[] userData = authTicket.UserData.Split(';');
+                    userid = int.Parse(userData[0]);
+                }
+            }
+            User_Book user_Book = new User_Book();
+            user_Book.BookID = idbook;
+            user_Book.UserID = userid;
+            _ = dataDel.DeleteFavorite(user_Book);
+            return RedirectToAction("Userfavorite");
         }
 
         public static string HashPassword(string username, string password)
@@ -352,10 +392,6 @@ namespace WebFont.Controllers
             }
         }
 
-        public class UsernameResponse
-        {
-            public string Username1 { get; set; }
-        }
 
         [HttpGet]
         public JsonResult IsAuthenticated()

@@ -20,11 +20,11 @@ namespace BookAPI.Controllers.BookData
             _context = new ModelBook();
         }
 
-        // api/BookDeleteData/DeleteBookInHistory?id=1
+        // api/BookDeleteData/DeleteBookInHistory
         [HttpDelete]
-        public HttpResponseMessage DeleteBookInHistory(int id)
+        public HttpResponseMessage DeleteBookInHistory(User_Book user_Book)
         {
-            var historyRead = _context.ReadingHistories.FirstOrDefault(h =>h.HistoryID == id);
+            var historyRead = _context.ReadingHistories.FirstOrDefault(h => h.BookID == user_Book.BookID && h.UserID == user_Book.UserID);
             if (historyRead == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
@@ -34,11 +34,11 @@ namespace BookAPI.Controllers.BookData
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // api/BookDeleteData/DeleteBookInFavorite?id=1
+        // api/BookDeleteData/DeleteBookInFavorite
         [HttpDelete]
-        public HttpResponseMessage DeleteBookInFavorite(int id)
+        public HttpResponseMessage DeleteBookInFavorite(User_Book user_Book)
         {
-            var favoriteRead = _context.FavoriteBooks.FirstOrDefault(f => f.FavoriteID == id);
+            var favoriteRead = _context.FavoriteBooks.FirstOrDefault(f => f.BookID == user_Book.BookID && f.UserID == user_Book.UserID);
             if (favoriteRead == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
@@ -48,7 +48,7 @@ namespace BookAPI.Controllers.BookData
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // api/BookDeleteData/DeleteBookInReview?id=1
+        // api/BookDeleteData/DeleteBookInReview
         [HttpDelete]
         public HttpResponseMessage DeleteBookInReview(int id)
         {
