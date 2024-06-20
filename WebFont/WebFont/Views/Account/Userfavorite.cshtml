@@ -13,7 +13,6 @@
             <table id="table-list-books" class="w-100 table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class=""><input type="checkbox" name="table-select-all" id="table-select-all"></th>
                         <th class="col-4">Tên Sách</th>
                         <th class="col-2">Tác giả</th>
                         <th class="col-1 text-center">Thể loại</th>
@@ -30,7 +29,6 @@
                         foreach (var item in Model)
                         {
                             <tr onclick="location.href='@Url.Action("Product", "Library", new { BookID = item.ID , category = item.Categories[0] })';" style="cursor: pointer;">
-                                <td><input type="checkbox" name="table-select"></td>
                                 <td class="table-title">@item.Title</td>
                                 <td class="table-author">
                                     @foreach (var author in item.Authors)

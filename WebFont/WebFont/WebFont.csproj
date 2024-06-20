@@ -135,6 +135,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\LoginAcc.cs" />
     <Compile Include="Models\ReviewBook.cs" />
+    <Compile Include="Models\ReviewBookPost.cs" />
     <Compile Include="Models\ReviewUser.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UsernameResponse.cs" />
@@ -239,6 +240,8 @@
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Account\UserRead.cshtml" />
     <Content Include="Views\Account\Userfavorite.cshtml" />
+    <Content Include="Views\Account\UserReview.cshtml" />
+    <Content Include="Views\Account\UpdateReviewAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -56,11 +56,20 @@ namespace BookAPI.Controllers.UserData
         {
             try
             {
-                var user = _context.Users.SingleOrDefault(u => u.Username == request.Username && u.Password == request.Password);
+                var user = _context.Users.SingleOrDefault(u => u.Username == request.Username);
 
                 if (user == null)
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "User not found.");
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Tài khoản không tồn tại hoặc sai tài khoản");
+                }
+                user = _context.Users.SingleOrDefault(u => u.Username == request.Username && u.Password == request.Password);
+                if (user == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Sai mật khẩu");
+                }
+                if (user.Status == 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Tài khoản đã bị khóa");
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, user);

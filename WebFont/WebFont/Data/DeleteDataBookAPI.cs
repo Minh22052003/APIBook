@@ -14,6 +14,7 @@ namespace WebFont.Data
     {
         private string DeleteBookInHistory = "https://localhost:44380/api/BookDeleteData/DeleteBookInHistory";
         private string DeleteBookInFavorite = "https://localhost:44380/api/BookDeleteData/DeleteBookInFavorite";
+        private string DeleteBookinReview = "https://localhost:44380/api/BookDeleteData/DeleteBookInReview";
         private readonly HttpClient _httpClient;
         public DeleteDataBookAPI()
         {
@@ -51,6 +52,28 @@ namespace WebFont.Data
             {
                 Method = HttpMethod.Delete,
                 RequestUri = new Uri(DeleteBookInFavorite),
+                Content = data
+            };
+
+            HttpResponseMessage response = await _httpClient.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public async Task<bool> DeleteReview(User_Book user_Book)
+        {
+            string json = JsonConvert.SerializeObject(user_Book);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(DeleteBookinReview),
                 Content = data
             };
 

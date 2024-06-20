@@ -50,9 +50,9 @@ namespace BookAPI.Controllers.BookData
 
         // api/BookDeleteData/DeleteBookInReview
         [HttpDelete]
-        public HttpResponseMessage DeleteBookInReview(int id)
+        public HttpResponseMessage DeleteBookInReview(User_Book user_Book)
         {
-            var bookReview = _context.Reviews.FirstOrDefault(r=>r.ReviewID == id);
+            var bookReview = _context.Reviews.FirstOrDefault(f => f.BookID == user_Book.BookID && f.UserID == user_Book.UserID);
             if (bookReview == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");

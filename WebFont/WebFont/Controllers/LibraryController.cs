@@ -66,6 +66,7 @@ namespace WebFont.Controllers
                 .Take(6)
                 .ToList();
             ViewData["Listds"] = bookscategory;
+
             List<ReviewBook> reviews = await data.Get_ReviewByBook(BookID);
             if (reviews.Count() != 0)
             {
@@ -76,7 +77,29 @@ namespace WebFont.Controllers
             {
                 ViewBag.countRV = 0;
             }
-            ViewBag.Check = isAuthenticated().ToString();
+
+            ViewBag.Checklogin = isAuthenticated().ToString();
+
+            int userid = 0;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    string[] userData = authTicket.UserData.Split(';');
+                    userid = int.Parse(userData[0]);
+                }
+            }
+            List<ReviewUser> reviewuser = await data.Get_ReviewUser(userid);
+            foreach(var i in reviewuser)
+            {
+                if(i.BookID == BookID)
+                {
+                    ViewBag.Checkreview = 1;
+                }
+            }
+            
 
             return View(book);
         }
@@ -124,7 +147,6 @@ namespace WebFont.Controllers
                 HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                 if (authCookie != null)
                 {
-                    // Giải mã cookie để lấy thông tin user
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
                     if (authTicket != null)
                     {
@@ -148,6 +170,60 @@ namespace WebFont.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+
+        }
+
+        [HttpPost]
+        public ActionResult SubmitReview(FormCollection form)
+        {
+            int userid = 0;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    string[] userData = authTicket.UserData.Split(';');
+                    if (userData.Length < 5)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                    int userId;
+                    if (int.TryParse(userData[0], out userId))
+                    {
+                        userid = userId;
+                    }
+                }
+            }
+
+            int idbook;
+            if (!int.TryParse(form["idbook"], out idbook))
+            {
+                return RedirectToAction("Index");
+            }
+
+            int rating;
+            if (!int.TryParse(form["rating"], out rating))
+            {
+                return RedirectToAction("Index");
+            }
+
+            string reviewText = form["reviewtext"];
+            DateTime reviewTime = DateTime.Now;
+
+            ReviewBookPost reviewBookPost = new ReviewBookPost
+            {
+                ReviewID = 0,
+                UserID = userid,
+                BookID = idbook,
+                Rating = rating,
+                Content = reviewText,
+                ReviewTime = reviewTime
+            };
+
+            _ = post.Post_CreateAccUser(reviewBookPost);
+
+            return RedirectToAction("Product", new { BookID = idbook, category = "Computer" });
 
         }
 

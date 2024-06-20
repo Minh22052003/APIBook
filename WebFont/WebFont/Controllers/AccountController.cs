@@ -128,14 +128,14 @@ namespace WebFont.Controllers
             }
             try
             {
-                LoginAcc loginuser = new LoginAcc { Username = username, Password = HashPassword(username,password) };
+                LoginAcc loginuser = new LoginAcc { Username = username, Password = HashPassword(username, password) };
                 HttpResponseMessage response = await dataPost.Post_LoginUserAsync(loginuser);
                 if (response.IsSuccessStatusCode)
                 {
                     //Nhận
                     string responseData = await response.Content.ReadAsStringAsync();
                     User user = JsonConvert.DeserializeObject<User>(responseData);
-                    if(user.FullName == null)
+                    if (user.FullName == null)
                     {
                         user.FullName = "null";
                     }
@@ -164,7 +164,8 @@ namespace WebFont.Controllers
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Sai tài khoản hoặc mật khẩu. Vui lòng kiểm tra lại.";
+                    string errorMessage = await response.Content.ReadAsStringAsync();
+                    ViewBag.ErrorMessage = errorMessage;
                     return View();
                 }
             }
@@ -371,6 +372,97 @@ namespace WebFont.Controllers
             _ = dataDel.DeleteFavorite(user_Book);
             return RedirectToAction("Userfavorite");
         }
+
+
+        public async Task<ActionResult> UserReview()
+        {
+            int userid = 0;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    string[] userData = authTicket.UserData.Split(';');
+                    userid = int.Parse(userData[0]);
+                }
+            }
+            List<ReviewUser> reviews = await dataGet.Get_ReviewUser(userid);
+            return View(reviews);
+        }
+        public async Task<ActionResult> UpdateReviewAsync(int id)
+        {
+            int userid = 0;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    string[] userData = authTicket.UserData.Split(';');
+                    userid = int.Parse(userData[0]);
+                }
+            }
+            List<ReviewUser> reviews = await dataGet.Get_ReviewUser(userid);
+            foreach( var i in reviews)
+            {
+                if(i.ReviewId == id)
+                {
+                    return View(i);
+                }
+            }
+            return View("UserReview");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateReviewAsync(ReviewUser review)
+        {
+            int userid = 0;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    string[] userData = authTicket.UserData.Split(';');
+                    userid = int.Parse(userData[0]);
+                }
+            }
+            ReviewBookPost reviewBookPost = new ReviewBookPost();
+            reviewBookPost.ReviewID = review.ReviewId;
+            reviewBookPost.UserID = userid;
+            reviewBookPost.BookID = review.BookID;
+            reviewBookPost.Rating = review.Rating;
+            reviewBookPost.Content = review.Content;
+            reviewBookPost.ReviewTime = DateTime.Now;
+
+            _ = dataPut.UpdateUserReview(reviewBookPost);
+            return RedirectToAction("UserReview");
+        }
+
+        public ActionResult DeleteReview(int idbook)
+        {
+            int userid = 0;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null)
+                {
+                    string[] userData = authTicket.UserData.Split(';');
+                    userid = int.Parse(userData[0]);
+                }
+            }
+            User_Book user_Book = new User_Book();
+            user_Book.BookID = idbook;
+            user_Book.UserID = userid;
+            _ = dataDel.DeleteReview(user_Book);
+            return RedirectToAction("UserReview");
+        }
+
+
+
+
 
         public static string HashPassword(string username, string password)
         {

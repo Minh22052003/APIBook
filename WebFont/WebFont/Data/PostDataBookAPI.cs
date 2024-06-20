@@ -16,6 +16,7 @@ namespace WebFont.Data
         private string Post_FavoriteBook = "https://localhost:44380/api/BookPostData/Create_FavoriteRead";
         private string CreateAccUser = "https://localhost:44380/api/UserPostData/POST_CreateAccUser";
         private string URLLogin = "https://localhost:44380/api/UserPostData/Login";
+        private string CreateReview = "https://localhost:44380/api/BookPostData/Create_Review";
         private readonly HttpClient _httpClient;
         public PostDataBookAPI()
         {
@@ -89,6 +90,23 @@ namespace WebFont.Data
             catch (Exception ex)
             {
                 // Xử lý lỗi nếu cần
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> Post_CreateAccUser(ReviewBookPost user_ReviewPost)
+        {
+            try
+            {
+                string json = JsonConvert.SerializeObject(user_ReviewPost);
+                StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await _httpClient.PostAsync(CreateReview, data);
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
                 return false;
             }

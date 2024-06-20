@@ -41,6 +41,7 @@ namespace BookAPI.Controllers
             ViewBag.CurrentPage = pageNumber;
             return View(books.ToList());
         }
+
         [HttpPost]
         public async Task<ActionResult> SubmitInputAsync(string inputString)
         {
@@ -88,6 +89,44 @@ namespace BookAPI.Controllers
             ViewBag.PublisherID = new SelectList(publishers, "ID", "PublisherName", book.PublisherID);
 
             return View(book);
+        }
+
+        public ActionResult DeleteBook(int id)
+        {
+            var book = _context.Books
+                       .Include("FavoriteBooks")
+                       .Include("ReadingHistories")
+                       .Include("Reviews")
+                       .Include("Categories")
+                       .Include("Authors")
+                       .FirstOrDefault(b => b.ID == id);
+
+            if (book != null)
+            {
+                // Xóa các thực thể liên quan
+                _context.FavoriteBooks.RemoveRange(book.FavoriteBooks);
+                _context.ReadingHistories.RemoveRange(book.ReadingHistories);
+                _context.Reviews.RemoveRange(book.Reviews);
+
+                // Xóa các liên kết nhiều-nhiều
+                var categoriesToRemove = book.Categories.ToList();
+                foreach (var category in categoriesToRemove)
+                {
+                    book.Categories.Remove(category);
+                }
+
+                var authorsToRemove = book.Authors.ToList();
+                foreach (var author in authorsToRemove)
+                {
+                    book.Authors.Remove(author);
+                }
+
+                // Xóa book
+                _context.Books.Remove(book);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
 

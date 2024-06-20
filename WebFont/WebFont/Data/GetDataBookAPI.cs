@@ -101,14 +101,14 @@ namespace WebFont.Data
             book = JsonConvert.DeserializeObject<List<BookHistory>>(responsData);
             return book;
         }
-        public async Task<List<BookHistory>> Get_ReviewUser(int iduser)
+        public async Task<List<ReviewUser>> Get_ReviewUser(int iduser)
         {
-            List<BookHistory> book;
-            string get_ReviewByBook = $"https://localhost:44380/api/BookGetData/Get_ReviewByBook?idbook={iduser}";
+            List<ReviewUser> reviews;
+            string get_ReviewByBook = $"https://localhost:44380/api/BookGetData/Get_ReviewByUser?iduser={iduser}";
             HttpResponseMessage response = await _httpClient.GetAsync(get_ReviewByBook);
             string responsData = await response.Content.ReadAsStringAsync();
-            book = JsonConvert.DeserializeObject<List<BookHistory>>(responsData);
-            return book;
+            reviews = JsonConvert.DeserializeObject<List<ReviewUser>>(responsData);
+            return reviews;
         }
 
         public async Task<List<Book>> Get_FavoriteUser(int iduser)

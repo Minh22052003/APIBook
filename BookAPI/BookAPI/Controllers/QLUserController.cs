@@ -31,17 +31,13 @@ namespace BookAPI.Controllers
             return View(existingUser);
         }
 
-        [HttpPost]
-        public ActionResult EditUser(User user)
+        public ActionResult Edit(int useid, int status, string role)
         {
-            if (ModelState.IsValid)
-            {
-                var tmpuser = _context.Users.FirstOrDefault(t => t.UserID == user.UserID);
-                tmpuser.Status = user.Status;
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(user);
+            var tmp = _context.Users.FirstOrDefault(u => u.UserID == useid);
+            tmp.Status = status;
+            tmp.Role = role;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

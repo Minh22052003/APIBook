@@ -5,14 +5,18 @@ using System.Web;
 
 namespace WebFont.Models
 {
-    public class ReviewUser
+    public class ReviewBookPost
     {
-        public int ReviewId { get; set; }  
-        public int BookID { get; set; }
-        public string Title { get; set; }
-        public double Rating { get; set; }
-        public string Content { get; set; }
-        public DateTime ReviewTime { get; set; }
+        public int ReviewID { get; set; }
 
+        public int UserID { get; set; }
+
+        public int BookID { get; set; }
+
+        public double Rating { get; set; }
+
+        public string Content { get; set; }
+
+        public DateTime ReviewTime { get; set; }
     }
 }

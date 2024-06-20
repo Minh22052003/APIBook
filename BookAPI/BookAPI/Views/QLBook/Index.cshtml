@@ -8,15 +8,16 @@
     <h4 class="p-3 ps-lg-0 fs-4 text-light fw-semibold">Quản lý sách</h4>
 
     <div class="w-100 d-flex flex-wrap justify-content-between my-4">
-        <div class="d-flex form-search-book mb-4">
-            <input type="text" class="flex-1 h-100 form-control form-search-input" id="search-book-input" placeholder="Nhập tên sách">
-            <button type="button" class="ms-2 btn btn-primary py-0 fw-medium" id="search-book-button">Tìm kiếm</button>
-        </div>
+        <form method="post" action="@Url.Action("SubmitInputAsync", "QLBook")">
+            @Html.AntiForgeryToken()
 
-        <a href="add-book.html" class="text-decoration-none">
-            <button type="button" class="btn btn-primary py-0 fw-medium add-new">Thêm sách</button>
-        </a>
+            <div class="input-group">
+                <input type="text" class="flex-1 h-100 form-control form-search-input" name="inputString" placeholder="Nhập tên sách">
+                <button type="submit" class="btn btn-primary py-0 fw-medium add-new">Thêm sách</button>
+            </div>
+        </form>
     </div>
+
 
     <div class="card mb-4 w-100">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center py-3">
@@ -129,7 +130,7 @@
                             <td>
                                 <div class="w-100 h-100 d-flex justify-content-evenly">
                                     <a href="@Url.Action("EditBook", "QLBook", new {idbook = item.ID })" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-                                    <a href="" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+                                    <a href="@Url.Action("DeleteBook", "QLBook", new {id = item.ID })" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
                                 </div>
                             </td>
                         </tr>

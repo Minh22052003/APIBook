@@ -3,7 +3,6 @@
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!-- Product -->
 <div class="container product mt-5">
     <div class="row">
@@ -143,15 +142,23 @@
     }
 </div>
 
-@if (ViewBag.Check == "True")
+@if (ViewBag.Checklogin == "True" && ViewBag.Checkreview != 1)
 {
     <!-- Rating -->
     <div class="rating container">
         <h4>Đánh giá cuốn sách:</h4>
 
-        <form method="POST" action="/your-endpoint" id="reviewForm">
+        @using (Html.BeginForm("SubmitReview", "Library", FormMethod.Post, new { id = "reviewForm" }))
+        {
             <div class="d-flex">
                 <div class="d-flex flex-column align-items-start">
+                    <div class="form-group">
+                        @if (Model.Count() == 1)
+                        {
+                            var item = Model.First();
+                            <input type="hidden" id="idbook" name="idbook" value="@item.ID" />
+                        }
+                    </div>
                     <div class="form-group">
                         <label for="rating" class="form-label">Đánh giá:</label>
                         <select id="rating" name="rating" class="form-control">
@@ -163,13 +170,13 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="reviewtext" class="form-label">Nhận xét</label>
+                        <label for="reviewtext" class="form-label">Nhận xét: </label>
                         <textarea id="reviewtext" name="reviewtext" class="form-control" rows="3" cols="80"></textarea>
                     </div>
                     <button class="btn btn-primary mt-4 h-auto" type="submit">Gửi đánh giá</button>
                 </div>
             </div>
-        </form>
+        }
     </div>
 
 }
@@ -204,8 +211,6 @@
         </div>
     </div>
 }
-
-
 
 <style>
     h4 {
@@ -330,6 +335,7 @@
         font-size: 14px;
     }
 </style>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var ratings = document.querySelectorAll('.rating');

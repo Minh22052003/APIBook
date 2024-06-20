@@ -437,7 +437,6 @@ namespace BookAPI.Controllers.BookData
                               r.BookID,
                               r.Book.Title,
                               r.Rating,
-                              n,
                               r.Content,
                               r.ReviewTime,
                           }).ToList();

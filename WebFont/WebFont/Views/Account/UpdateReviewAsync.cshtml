@@ -1,0 +1,104 @@
+﻿@model WebFont.Models.ReviewUser
+
+@{
+    ViewBag.Title = "UpdateReviewAsync";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.ReviewId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReviewId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReviewId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.BookID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BookID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <h3>Tiêu đề sách:</h3>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Điểm đánh giá</h4>
+            <div class="col-md-10">
+                <select id="Rating" name="Rating" class="form-control">
+                    <option value="1" @(Model.Rating == 1 ? "selected" : "")>1</option>
+                    <option value="2" @(Model.Rating == 2 ? "selected" : "")>2</option>
+                    <option value="3" @(Model.Rating == 3 ? "selected" : "")>3</option>
+                    <option value="4" @(Model.Rating == 4 ? "selected" : "")>4</option>
+                    <option value="5" @(Model.Rating == 5 ? "selected" : "")>5</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <h4>Nội dung:</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.ReviewTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReviewTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReviewTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+
+<style>
+    .form-horizontal {
+        margin: 20px;
+    }
+    
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-group .form-control {
+        border-radius: 5px;
+    }
+
+    .btn-default {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+        .btn-default:hover {
+            background-color: #0056b3;
+        }
+</style>
