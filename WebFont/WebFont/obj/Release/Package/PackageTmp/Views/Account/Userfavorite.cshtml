@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebFont.Models.Book>
+@{
+    ViewBag.Title = "Userfavorite";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="tab-pane fade active show" id="account-like">
+    <div class="card-header d-flex flex-wrap justify-content-between align-items-center py-3">
+        <div class="mb-3 fs-5 fw-medium opacity-75"><i class="fas fa-table me-3"></i>Danh sách sách</div>
+
+
+        <div class="card-body" style="margin-top: 10px;">
+            <table id="table-list-books" class="w-100 table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-4">Tên Sách</th>
+                        <th class="col-2">Tác giả</th>
+                        <th class="col-1 text-center">Thể loại</th>
+                        <th class="col-1 text-center">Nhà xuất bản</th>
+                        <th class="col-1 text-center">Ngày xuất bản</th>
+                        <th class="col-1 text-center">Trang bìa</th>
+                        <th class="col-1 text-center">Loại bỏ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr onclick="location.href='@Url.Action("Product", "Library", new { BookID = item.ID , category = item.Categories[0] })';" style="cursor: pointer;">
+                                <td class="table-title">@item.Title</td>
+                                <td class="table-author">
+                                    @foreach (var author in item.Authors)
+                                    {
+                                        @author<br />
+                                    }
+                                </td>
+                                <td class="table-categories text-center ">
+                                    @foreach (var category in item.Categories)
+                                    {
+                                        @category<br />
+                                    }
+                                </td>
+                                <td class="table-publisher text-center ">@item.Publisher</td>
+                                <td class="table-publisheddate text-center ">@item.PublishedDate</td>
+                                <td class="table-image text-center ">
+                                    <img src="@item.CoverImage" alt="@item.Title Cover Image" class="img-fluid" />
+                                </td>
+                                <td>
+                                    <div class="w-100 h-100 d-flex justify-content-evenly">
+                                        <a href="@Url.Action("DeleteLove", "Account", new {idbook = item.ID })" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

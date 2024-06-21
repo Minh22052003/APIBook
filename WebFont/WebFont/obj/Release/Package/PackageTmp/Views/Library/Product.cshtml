@@ -1,0 +1,367 @@
+﻿@model IEnumerable<WebFont.Models.Book>
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Product -->
+<div class="container product mt-5">
+    <div class="row">
+        @if (Model.Count() == 1)
+        {
+            var item = Model.First();
+            <div class="col-12 col-lg-6 col-xl-5 ps-lg-4">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="product__img pt-2">
+                            <img src="@item.CoverImage" alt="@item.Title Cover Image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 col-xl-7 mt-5 mt-lg-0 ps-md-5 ps-lg-0">
+                <h4 class="mb-4 fs-4 fw-medium" style="color: #333;">@item.Title</h4>
+
+                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">@item.Publisher</span></p>
+                <p class="mb-1 fs-6 fw-medium">
+                    Tác giả: <span class="fw-semibold">
+                        @foreach (var author in item.Authors)
+                        {
+                            @author<br />
+                        }
+                    </span>
+                </p>
+                <p class="mb-1 fs-6 fw-medium">Ngày xuất bản: <span class="fw-semibold">@item.PublishedDate</span></p>
+                <p class="mb-1 fs-6 fw-medium">
+                    Thể loại: <span class="fw-semibold">
+                        @foreach (var category in item.Categories)
+                        {
+                            @category<br />
+                        }
+                    </span>
+                </p>
+
+                <div class="rating mb-2" data-rating="@item.Rating">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    ( <span>@ViewBag.countRV</span> đánh giá)
+                </div>
+
+
+                <div class="product__button pt-4">
+                    <button class="buy-now me-2" type="button" )"><a href="@Url.Action("ReadBook", "Library", new { idbook = item.ID ,bookLink = item.BookLink })">đọc</a></button>
+
+                    <button class="add-to-cart" type="button"><i class="fa-solid fa-heart pe-2"></i><a href="@Url.Action("LoveBook", "Library", new { idbook = item.ID })">Thêm vào yêu thích</a></button>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+<!-- List product suggestion -->
+<div class="suggestion container p-4">
+    <h4 class="fs-4 fw-medium mt-2 mb-4 ms-3">Đề xuất cho bạn</h4>
+
+    <div class="row mb-3">
+        @foreach (var books in ViewData["Listds"] as List<WebFont.Models.Book>)
+        {
+            <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+                <div class="product">
+                    <a href="@Url.Action("Product", "Library", new { BookID = books.ID , category = books.Categories[0] })" class="product__link">
+                        <div class="product__img">
+                            <img src="@books.CoverImage" alt="@books.Title Cover Image" />
+                        </div>
+
+                        <div class="product__info pt-2">
+                            <h6 class="name mb-2">@books.Title</h6>
+                            <p>
+                                @foreach (var author in books.Authors)
+                                {
+                                    @author
+                                }
+                            </p>
+                            <p class="">@books.PublishedDate</p>
+
+                            <div class="rating mb-2" data-rating="@books.Rating">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Product details info -->
+<div class="descriptions container">
+    <h4>Thông tin chi tiết</h4>
+    @if (Model.Count() == 1)
+    {
+        var item = Model.First();
+        <div class="row p-1 mt-4">
+            <div class="col-6 col-lg-4 tag">
+                <p class="m-0 py-1">Tác giả</p>
+                <p class="m-0 py-1">Nhà xuất bản</p>
+                <p class="m-0 py-1">Năm xuất bản</p>
+                <p class="m-0 py-1">Thể loại</p>
+            </div>
+            <div class="col-6 col-lg-4 info">
+                <p class="m-0 py-1">
+                    @foreach (var author in item.Authors)
+                    {
+                        @author<br />
+                    }
+                </p>
+                <p class="m-0 py-1">@item.Publisher</p>
+                <p class="m-0 py-1">@item.PublishedDate</p>
+                <p class="m-0 py-1">
+                    @foreach (var category in item.Categories)
+                    {
+                        @category<br />
+                    }
+                </p>
+            </div>
+        </div>
+
+        <div class="description-text py-2">
+            <p class="m-0 py-1">Mô tả:</p>
+            <p>
+                @item.DescriptionB
+            </p>
+        </div>
+    }
+</div>
+
+@if (ViewBag.Checklogin == "True" && ViewBag.Checkreview != 1)
+{
+    <!-- Rating -->
+    <div class="rating container">
+        <h4>Đánh giá cuốn sách:</h4>
+
+        @using (Html.BeginForm("SubmitReview", "Library", FormMethod.Post, new { id = "reviewForm" }))
+        {
+            <div class="d-flex">
+                <div class="d-flex flex-column align-items-start">
+                    <div class="form-group">
+                        @if (Model.Count() == 1)
+                        {
+                            var item = Model.First();
+                            <input type="hidden" id="idbook" name="idbook" value="@item.ID" />
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="rating" class="form-label">Đánh giá:</label>
+                        <select id="rating" name="rating" class="form-control">
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewtext" class="form-label">Nhận xét: </label>
+                        <textarea id="reviewtext" name="reviewtext" class="form-control" rows="3" cols="80"></textarea>
+                    </div>
+                    <button class="btn btn-primary mt-4 h-auto" type="submit">Gửi đánh giá</button>
+                </div>
+            </div>
+        }
+    </div>
+
+}
+@if (ViewData["listrv"] != null)
+{
+    <div class="rating container">
+        <div class="List-review">
+            @foreach (var item in ViewData["listrv"] as List<WebFont.Models.ReviewBook>)
+            {
+                <div class="review">
+                    <div class="reviewer">
+                        @if (@item.FullName == "null")
+                        {
+                            <span class="name">@item.Username</span>
+                        }
+                        else
+                        {
+                            <span class="name">@item.FullName</span>
+                        }
+                        <span class="date">@item.ReviewTime</span>
+                    </div>
+                    <div class="rating mb-2" data-rating="@item.Rating">
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                    </div>
+                    <div class="content">@item.Content</div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<style>
+    h4 {
+        margin-right: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .rating h4 {
+        margin-bottom: 20px;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .flex-column {
+        flex-direction: column;
+    }
+
+    .align-items-start {
+        align-items: flex-start;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem;
+    }
+
+    .h-auto {
+        height: auto;
+    }
+
+    .List-review {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .review {
+        width: 100%;
+        border-radius: 25px;
+        border-style: solid;
+        border-color: black;
+        margin: 20px;
+        padding: 10px;
+    }
+
+    .mb-2 {
+        margin: 0;
+    }
+
+    .reviewer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .name {
+        font-weight: bold;
+    }
+
+    .date {
+        color: #999;
+    }
+
+    .rating {
+        display: flex;
+        justify-content: start;
+        margin-bottom: 10px;
+    }
+
+    .star {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-image: url("star.png");
+        background-repeat: no-repeat;
+    }
+
+    .content {
+        font-size: 14px;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ratings = document.querySelectorAll('.rating');
+
+        ratings.forEach(function (rating) {
+            var score = rating.getAttribute('data-rating');
+            var stars = rating.querySelectorAll('.fa-star');
+            for (var i = 0; i < score; i++) {
+                stars[i].classList.add('selected');
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const stars = document.querySelectorAll('.fa-star');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', function () {
+                selectedRating = this.getAttribute('data-value');
+                stars.forEach(s => s.classList.remove('fa-solid', 'text-warning'));
+                for (let i = 0; i < selectedRating; i++) {
+                    stars[i].classList.add('fa-solid', 'text-warning');
+                }
+            });
+        });
+    });
+
+</script>

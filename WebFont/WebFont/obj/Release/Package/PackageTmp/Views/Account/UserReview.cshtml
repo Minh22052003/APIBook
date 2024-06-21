@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebFont.Models.ReviewUser>
+@{
+    ViewBag.Title = "UserReview";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="tab-pane fade active show" id="account-like">
+    <div class="card-header flex-wrap justify-content-between align-items-center py-3">
+        <div class="mb-3 fs-5 fw-medium opacity-75"><i class="fas fa-table me-3"></i>Danh sách sách</div>
+        <div class="card-body" style="margin-top: 10px;">
+            <table id="table-list-books" class="w-100 table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-1">ID</th>
+                        <th class="col-3">Tiêu đề</th>
+                        <th class="col-1 text-center">Đánh giá</th>
+                        <th class="col-4 text-center">Nội dung</th>
+                        <th class="col-2 text-center">Ngày đánh giá</th>
+                        <th class="col-1 text-center">Chỉnh sửa</th>
+                        <th class="col-1 text-center">Loại bỏ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr onclick="location.href='@Url.Action("Product", "Library", new { BookID = item.BookID , category = "Computer" })';" style="cursor: pointer;">
+                                <td class="table-author">@item.ReviewId</td>
+                                <td class="table-author">@item.Title</td>
+                                <td class="table-categories">@item.Rating</td>
+                                <td class="table-publisher text-center ">@item.Content</td>
+                                <td class="table-publisheddate text-center ">@item.ReviewTime</td>
+                                <td>
+                                    <div class="w-100 h-100 d-flex justify-content-evenly">
+                                        <a href="@Url.Action("UpdateReviewAsync", "Account", new {id = item.ReviewId })" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="w-100 h-100 d-flex justify-content-evenly">
+                                        <a href="@Url.Action("DeleteReview", "Account", new {idbook = item.BookID })" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

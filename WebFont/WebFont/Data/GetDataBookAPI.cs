@@ -13,13 +13,17 @@ namespace WebFont.Data
 {
     public class GetDataBookAPI
     {
-        string Get_AllBook = "https://localhost:44380/api/BookGetData/Get_AllBook";
-        string Get_BookCategory = "https://localhost:44380/api/BookGetData/Get_BookCategory";
-        string URLGetUserName = "https://localhost:44380/api/UserGetData/Get_UserName";
+        private hosting host;
+        private string name = "";
+        string Get_AllBook = "api/BookGetData/Get_AllBook";
+        string Get_BookCategory = "api/BookGetData/Get_BookCategory";
+        string URLGetUserName = "api/UserGetData/Get_UserName";
         private readonly HttpClient _httpClient;
         public GetDataBookAPI()
         {
             _httpClient = new HttpClient();
+            host = new hosting();
+            name = host.name;
         }
 
 
@@ -27,7 +31,7 @@ namespace WebFont.Data
         public async Task<List<Book>> Get_AllBookAsync()
         {
             List<Book> books;
-            HttpResponseMessage response = await _httpClient.GetAsync(Get_AllBook);
+            HttpResponseMessage response = await _httpClient.GetAsync(name+Get_AllBook);
             string responsData = await response.Content.ReadAsStringAsync();
             books = JsonConvert.DeserializeObject<List<Book>>(responsData);
             return books;
@@ -35,7 +39,7 @@ namespace WebFont.Data
         public async Task<List<UsernameResponse>> Get_AllUsernameAsync()
         {
             List<UsernameResponse> tmp;
-            HttpResponseMessage response = await _httpClient.GetAsync(URLGetUserName);
+            HttpResponseMessage response = await _httpClient.GetAsync(name+URLGetUserName);
             string responsData = await response.Content.ReadAsStringAsync();
             tmp = JsonConvert.DeserializeObject<List<UsernameResponse>>(responsData);
 
@@ -44,7 +48,7 @@ namespace WebFont.Data
         public async Task<List<Book>> Get_BookbyIDAsync(int id)
         {
             List<Book> books;
-            string Get_BookbyID = $"https://localhost:44380/api/BookGetData/Get_BookByID?id={id}";
+            string Get_BookbyID = $"{name}api/BookGetData/Get_BookByID?id={id}";
             HttpResponseMessage response = await _httpClient.GetAsync(Get_BookbyID);
             string responsData = await response.Content.ReadAsStringAsync();
             books = JsonConvert.DeserializeObject<List<Book>>(responsData);
@@ -53,7 +57,7 @@ namespace WebFont.Data
         public async Task<List<Book>> Get_BookbyCategoryAsync(string categoryname)
         {
             List<Book> books;
-            string Get_BookbyID = $"https://localhost:44380/api/BookGetData/Get_BookByCategory?categoryName={categoryname}";
+            string Get_BookbyID = $"{name}api/BookGetData/Get_BookByCategory?categoryName={categoryname}";
             HttpResponseMessage response = await _httpClient.GetAsync(Get_BookbyID);
             string responsData = await response.Content.ReadAsStringAsync();
             books = JsonConvert.DeserializeObject<List<Book>>(responsData);
@@ -62,7 +66,7 @@ namespace WebFont.Data
         public async Task<List<Book>> Get_BookbyCategoryIDAsync(int categoryID)
         {
             List<Book> books;
-            string Get_BookbyID = $"https://localhost:44380/api/BookGetData/Get_BookByCategoryID?categoryID={categoryID}";
+            string Get_BookbyID = $"{name}api/BookGetData/Get_BookByCategoryID?categoryID={categoryID}";
             HttpResponseMessage response = await _httpClient.GetAsync(Get_BookbyID);
             string responsData = await response.Content.ReadAsStringAsync();
             books = JsonConvert.DeserializeObject<List<Book>>(responsData);
@@ -71,7 +75,7 @@ namespace WebFont.Data
         public async Task<List<Category>> Get_BookCategoryAsync()
         {
             List<Category> categories;
-            HttpResponseMessage response = await _httpClient.GetAsync(Get_BookCategory);
+            HttpResponseMessage response = await _httpClient.GetAsync(name + Get_BookCategory);
             string responsData = await response.Content.ReadAsStringAsync();
             categories = JsonConvert.DeserializeObject<List<Category>>(responsData);
             return categories;
@@ -80,7 +84,7 @@ namespace WebFont.Data
         public async Task<List<ReviewBook>> Get_ReviewByBook(int idbook)
         {
             List<ReviewBook> reviews;
-            string get_ReviewByBook = $"https://localhost:44380/api/BookGetData/Get_ReviewByBook?idbook={idbook}";
+            string get_ReviewByBook = $"{name}api/BookGetData/Get_ReviewByBook?idbook={idbook}";
             HttpResponseMessage response = await _httpClient.GetAsync(get_ReviewByBook);
             string responsData = await response.Content.ReadAsStringAsync();
             reviews = JsonConvert.DeserializeObject<List<ReviewBook>>(responsData) ;
@@ -95,7 +99,7 @@ namespace WebFont.Data
         public async Task<List<BookHistory>> Get_HistoryUser(int iduser)
         {
             List<BookHistory> book;
-            string get_ReviewByBook = $"https://localhost:44380/api/BookGetData/Get_BookByHistoryUser?iduser={iduser}";
+            string get_ReviewByBook = name + $"api/BookGetData/Get_BookByHistoryUser?iduser={iduser}";
             HttpResponseMessage response = await _httpClient.GetAsync(get_ReviewByBook);
             string responsData = await response.Content.ReadAsStringAsync();
             book = JsonConvert.DeserializeObject<List<BookHistory>>(responsData);
@@ -104,7 +108,7 @@ namespace WebFont.Data
         public async Task<List<ReviewUser>> Get_ReviewUser(int iduser)
         {
             List<ReviewUser> reviews;
-            string get_ReviewByBook = $"https://localhost:44380/api/BookGetData/Get_ReviewByUser?iduser={iduser}";
+            string get_ReviewByBook = name + $"api/BookGetData/Get_ReviewByUser?iduser={iduser}";
             HttpResponseMessage response = await _httpClient.GetAsync(get_ReviewByBook);
             string responsData = await response.Content.ReadAsStringAsync();
             reviews = JsonConvert.DeserializeObject<List<ReviewUser>>(responsData);
@@ -114,7 +118,7 @@ namespace WebFont.Data
         public async Task<List<Book>> Get_FavoriteUser(int iduser)
         {
             List<Book> book;
-            string get_ReviewByBook = $"https://localhost:44380/api/BookGetData/Get_BookByFavoriteUser?iduser={iduser}";
+            string get_ReviewByBook = name + $"api/BookGetData/Get_BookByFavoriteUser?iduser={iduser}";
             HttpResponseMessage response = await _httpClient.GetAsync(get_ReviewByBook);
             string responsData = await response.Content.ReadAsStringAsync();
             book = JsonConvert.DeserializeObject<List<Book>>(responsData);

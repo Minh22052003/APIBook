@@ -1,0 +1,5 @@
+
+.content .card-body .table th:nth-child(n + 2):nth-child(-n + 5),
+.content .card-body .table td:nth-child(n + 2):nth-child(-n + 5) {
+    min-width: 14rem;
+}

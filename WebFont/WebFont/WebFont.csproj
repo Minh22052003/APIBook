@@ -125,6 +125,7 @@
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Data\DeleteDataBookAPI.cs" />
     <Compile Include="Data\GetDataBookAPI.cs" />
+    <Compile Include="Data\hosting.cs" />
     <Compile Include="Data\PostDataBookAPI.cs" />
     <Compile Include="Data\PutDataBookAPI.cs" />
     <Compile Include="Global.asax.cs">

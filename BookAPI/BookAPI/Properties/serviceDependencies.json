@@ -5,7 +5,8 @@
     },
     "mssql1": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings:ProBookContext"
+      "connectionId": "ConnectionStrings:ModelBook",
+      "dynamicId": null
     }
   }
 }

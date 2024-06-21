@@ -12,19 +12,23 @@ namespace WebFont.Data
 {
     public class PutDataBookAPI
     {
-        string URLPutUser = "https://localhost:44380/api/UserPutData/UpdateUser";
-        string URLPutUserReview = "https://localhost:44380/api/BookPutData/UpdateReview";
+        private hosting host;
+        private string name = "";
+        string URLPutUser = "api/UserPutData/UpdateUser";
+        string URLPutUserReview = "api/BookPutData/UpdateReview";
         private readonly HttpClient _httpClient;
         public PutDataBookAPI()
         {
             _httpClient = new HttpClient();
+            host = new hosting();
+            name = host.name;
         }
         public async Task<HttpResponseMessage> UpdateUserAsync(UserNotPass user)
         {
             string json = JsonConvert.SerializeObject(user);
             StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _httpClient.PutAsync(URLPutUser, data);
+            HttpResponseMessage response = await _httpClient.PutAsync(name+URLPutUser, data);
             return response;
         }
         public async Task<HttpResponseMessage> UpdateUserReview(ReviewBookPost review)
@@ -32,7 +36,7 @@ namespace WebFont.Data
             string json = JsonConvert.SerializeObject(review);
             StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _httpClient.PutAsync(URLPutUserReview, data);
+            HttpResponseMessage response = await _httpClient.PutAsync(name + URLPutUserReview, data);
             return response;
         }
     }

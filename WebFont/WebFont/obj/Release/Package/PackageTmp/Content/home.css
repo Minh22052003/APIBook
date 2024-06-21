@@ -1,0 +1,111 @@
+
+.slider{
+    background-color: var(--bg-header);
+    padding: 5rem 0;
+}
+
+.slider .carousel{
+    position: relative;
+}
+
+.slider .carousel button{
+    width: 1.5rem;
+    height: 4rem;
+    font-size: 1.75rem;
+    position: absolute;
+    top: calc(50% - 1rem);
+}
+
+.slider .carousel button.carousel-control-prev{
+    left: -1.3rem;
+}
+
+.slider .carousel button.carousel-control-next{
+    right: -1.3rem;
+}
+
+.slider .carousel a.explore{
+    border: 0.0625rem solid rgba(255, 255, 255, 0.5);
+}
+
+.slider .carousel a.explore:hover{
+    opacity: 1;
+    border: 0.0625rem solid var(--text-white);
+}
+
+.slider .carousel .slide-img{
+    text-align: center;
+    aspect-ratio: 4/3;
+}
+
+.slider .carousel .slide-img img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.slider .slide-caption{
+    text-align: justify;
+    max-height: 15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.season-trending,
+.blog{
+    margin-top: 10rem;
+}
+
+.season-trending .img-1{
+    width: 100%;
+}
+
+.season-trending .img-2{
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.season-trending .img-3{
+    position: absolute;
+    top: calc(100% + 1.5rem);
+    right: 0.75rem;
+    width: 150%;
+}
+
+.season-trending .img-wrapper{
+    position: relative;
+}
+
+.season-trending .img-wrapper:before{
+    position: absolute;
+    content: "";
+    width: 12rem;
+    height: 12rem;
+    background-image: url("../images/dots-green.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-transform: translate(-40%, -40%);
+    -ms-transform: translate(-40%, -40%);
+    transform: translate(-40%, -40%);
+    z-index: -1;
+}
+
+@media (min-width: 768px) {
+    .season-trending{
+        margin-top: 12rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .blog{
+        margin-top: 20rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .slider .slide-caption{
+        min-height: 6rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+}

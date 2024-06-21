@@ -145,7 +145,7 @@ namespace WebFont.Controllers
                     }
                     if (user.BirthDate == null)
                     {
-                        user.BirthDate = new DateTime(0001, 01, 01);
+                        user.BirthDate = new DateTime(2000, 01, 01);
                     }
                     if (user.Gender == null)
                     {
@@ -159,8 +159,15 @@ namespace WebFont.Controllers
                     string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     HttpContext.Response.Cookies.Add(authCookie);
-
-                    return RedirectToAction("Index", "Home");
+                    if (Session["RedirectBookID"] != null && Session["RedirectBookID"] is int redirectBookID)
+                    {
+                        Session.Remove("RedirectBookID");
+                        return RedirectToAction("Product", "Library", new { BookID = redirectBookID, category = "Computer" });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {

@@ -58,8 +58,13 @@ namespace WebFont.Controllers
             }
             
         }
-        public async Task<ActionResult> Product(int BookID, string category)
+        public async Task<ActionResult> Product(int BookID, string category, int? BookIDRedirect)
         {
+            if (!isAuthenticated())
+            {
+                Session["RedirectBookID"] = BookID;
+                return RedirectToAction("Login", "Account");
+            }
             List<Book> book = await data.Get_BookbyIDAsync(BookID);
             List<Book> bookscategory = (await data.Get_BookbyCategoryAsync(category))
                 .OrderBy(x => Guid.NewGuid())
@@ -79,7 +84,7 @@ namespace WebFont.Controllers
             }
 
             ViewBag.Checklogin = isAuthenticated().ToString();
-
+            
             int userid = 0;
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie != null)
@@ -92,16 +97,22 @@ namespace WebFont.Controllers
                 }
             }
             List<ReviewUser> reviewuser = await data.Get_ReviewUser(userid);
-            foreach(var i in reviewuser)
+            foreach (var i in reviewuser)
             {
-                if(i.BookID == BookID)
+                if (i.BookID == BookID)
                 {
                     ViewBag.Checkreview = 1;
                 }
             }
-            
+
+            if (BookIDRedirect.HasValue)
+            {
+                return RedirectToAction("Product", new { BookID = BookIDRedirect.Value, category = category });
+            }
 
             return View(book);
+            
+            
         }
 
         public async Task<ActionResult> ReadBook(string idbook, string bookLink)

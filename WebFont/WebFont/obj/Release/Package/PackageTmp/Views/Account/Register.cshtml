@@ -1,0 +1,122 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Đăng ký</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .register-container {
+            width: 300px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 100px;
+        }
+
+            .register-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .register-container input[type="text"],
+            .register-container input[type="password"] {
+                width: calc(100% - 20px);
+                padding: 8px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+            }
+
+            .register-container input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                border: 0;
+                background: #333;
+                color: #fff;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+                .register-container input[type="submit"]:hover {
+                    background: #555;
+                }
+
+            .register-container .show-password {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+            }
+
+                .register-container .show-password input {
+                    margin-right: 5px;
+                }
+
+            .register-container .back-link {
+                text-align: center;
+                margin-top: 10px;
+                margin-left:250px
+            }
+
+                .register-container .back-link a {
+                    color: #333;
+                    text-decoration: none;
+                }
+
+                    .register-container .back-link a:hover {
+                        text-decoration: underline;
+                    }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form action="~/Account/Register" method="post">
+            <input type="text" name="username" placeholder="UserName" required>
+            <input type="password" id="password" name="Password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" name="ConfirmPassword" placeholder="ConfirmPassword" required>
+            <div class="show-password">
+                <input type="checkbox" id="showPassword">
+                <label for="showPassword">Show Password</label>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+        <div class="error">
+            @ViewBag.Error
+        </div>
+        <div class="back-link">
+            <a href="~/Account/Login">Back</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('showPassword').addEventListener('change', function () {
+            var passwordInput = document.getElementById('password');
+            var confirmPasswordInput = document.getElementById('confirmPassword');
+            if (this.checked) {
+                passwordInput.type = 'text';
+                confirmPasswordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+                confirmPasswordInput.type = 'password';
+            }
+        });
+    </script>
+</body>
+
+</html>

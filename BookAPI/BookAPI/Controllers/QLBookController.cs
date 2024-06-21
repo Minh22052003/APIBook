@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace BookAPI.Controllers
 {
@@ -28,6 +29,7 @@ namespace BookAPI.Controllers
         // GET: QLBook
         public ActionResult Index(int? page)
         {
+            ViewBag.Checklogin = isAuthenticated().ToString();
             int pageNumber = (page ?? 1);
             var books = from b in _context.Books
                     .Include("Publisher")
@@ -52,6 +54,7 @@ namespace BookAPI.Controllers
         }
         public ActionResult EditBook(int idbook)
         {
+            ViewBag.Checklogin = isAuthenticated().ToString();
             var books = _context.Books
                     .Include("Publisher")
                     .Include("Authors")
@@ -103,12 +106,10 @@ namespace BookAPI.Controllers
 
             if (book != null)
             {
-                // Xóa các thực thể liên quan
                 _context.FavoriteBooks.RemoveRange(book.FavoriteBooks);
                 _context.ReadingHistories.RemoveRange(book.ReadingHistories);
                 _context.Reviews.RemoveRange(book.Reviews);
 
-                // Xóa các liên kết nhiều-nhiều
                 var categoriesToRemove = book.Categories.ToList();
                 foreach (var category in categoriesToRemove)
                 {
@@ -129,6 +130,30 @@ namespace BookAPI.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public bool isAuthenticated()
+        {
+            if (HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                try
+                {
+                    HttpCookie authCookie = HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                    string userData = authTicket.UserData;
+
+                    if (!string.IsNullOrEmpty(userData))
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error decoding authentication ticket: " + ex.Message);
+                }
+            }
+
+            return false;
+        }
 
     }
 

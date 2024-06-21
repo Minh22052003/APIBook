@@ -7,7 +7,8 @@
       "serviceConnectorResourceId": "",
       "secretStore": "LocalSecretsFile",
       "type": "mssql.onprem",
-      "connectionId": "ConnectionStrings:ProBookContext"
+      "connectionId": "ConnectionStrings:ModelBook",
+      "dynamicId": null
     }
   }
 }

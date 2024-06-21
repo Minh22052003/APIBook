@@ -12,15 +12,19 @@ namespace WebFont.Data
 {
     public class PostDataBookAPI
     {
-        private string Post_HistoryRead = "https://localhost:44380/api/BookPostData/Create_HistoryRead";
-        private string Post_FavoriteBook = "https://localhost:44380/api/BookPostData/Create_FavoriteRead";
-        private string CreateAccUser = "https://localhost:44380/api/UserPostData/POST_CreateAccUser";
-        private string URLLogin = "https://localhost:44380/api/UserPostData/Login";
-        private string CreateReview = "https://localhost:44380/api/BookPostData/Create_Review";
+        private hosting host;
+        private string name = "";
+        private string Post_HistoryRead = "api/BookPostData/Create_HistoryRead";
+        private string Post_FavoriteBook = "api/BookPostData/Create_FavoriteRead";
+        private string CreateAccUser = "api/UserPostData/POST_CreateAccUser";
+        private string URLLogin = "api/UserPostData/Login";
+        private string CreateReview = "api/BookPostData/Create_Review";
         private readonly HttpClient _httpClient;
         public PostDataBookAPI()
         {
             _httpClient = new HttpClient();
+            host = new hosting();
+            name = host.name;
         }
 
         //USER
@@ -31,7 +35,7 @@ namespace WebFont.Data
             {
                 string json = JsonConvert.SerializeObject(loginuser);
                 StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response1 = await _httpClient.PostAsync(URLLogin, data);
+                HttpResponseMessage response1 = await _httpClient.PostAsync(name + URLLogin, data);
 
                 return response1;
             }
@@ -48,7 +52,7 @@ namespace WebFont.Data
             {
                 string json = JsonConvert.SerializeObject(login);
                 StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response1 = await _httpClient.PostAsync(CreateAccUser, data);
+                HttpResponseMessage response1 = await _httpClient.PostAsync( name + CreateAccUser, data);
 
                 return response1.IsSuccessStatusCode;
             }
@@ -65,7 +69,7 @@ namespace WebFont.Data
             {
                 string json = JsonConvert.SerializeObject(user_Book);
                 StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _httpClient.PostAsync(Post_HistoryRead, data);
+                HttpResponseMessage response = await _httpClient.PostAsync(name + Post_HistoryRead, data);
 
                 return response.IsSuccessStatusCode;
             }
@@ -83,7 +87,7 @@ namespace WebFont.Data
             {
                 string json = JsonConvert.SerializeObject(user_Book);
                 StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _httpClient.PostAsync(Post_FavoriteBook, data);
+                HttpResponseMessage response = await _httpClient.PostAsync( name + Post_FavoriteBook, data);
 
                 return response.IsSuccessStatusCode;
             }
@@ -101,7 +105,7 @@ namespace WebFont.Data
             {
                 string json = JsonConvert.SerializeObject(user_ReviewPost);
                 StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _httpClient.PostAsync(CreateReview, data);
+                HttpResponseMessage response = await _httpClient.PostAsync(name + CreateReview, data);
 
                 return response.IsSuccessStatusCode;
             }
