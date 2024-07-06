@@ -155,7 +155,7 @@ namespace WebFont.Controllers
                     FormsAuthentication.SetAuthCookie(user.Username, false);
                     var userData = $"{user.UserID};{user.FullName};{user.Email};{user.BirthDate};{user.Gender}";
                     var authTicket = new FormsAuthenticationTicket(
-                        1, user.Username, DateTime.Now, DateTime.Now.AddHours(2), false, userData);
+                        1, user.Username, DateTime.Now, DateTime.Now.AddDays(1), false, userData);
                     string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     HttpContext.Response.Cookies.Add(authCookie);

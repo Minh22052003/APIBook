@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\host1</_PublishTargetUrl>
-    <History>True|2024-06-21T05:05:58.2671189Z;True|2024-06-21T10:44:09.4242711+07:00;True|2024-06-21T09:18:33.7393198+07:00;</History>
+    <History>True|2024-07-05T16:55:51.2950256Z;True|2024-06-21T12:05:58.2671189+07:00;True|2024-06-21T10:44:09.4242711+07:00;True|2024-06-21T09:18:33.7393198+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -79,10 +79,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/BookAPI.dll">
-      <publishTime>06/21/2024 12:05:57</publishTime>
+      <publishTime>07/05/2024 23:55:50</publishTime>
     </File>
     <File Include="bin/BookAPI.pdb">
-      <publishTime>06/21/2024 12:05:57</publishTime>
+      <publishTime>07/05/2024 23:55:50</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/17/2020 03:38:42</publishTime>

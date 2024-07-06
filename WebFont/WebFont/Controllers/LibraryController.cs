@@ -175,7 +175,7 @@ namespace WebFont.Controllers
                 }
                 userbook.BookID = int.Parse(idbook);
                 bool task = await post.Post_FavoriteDataAsync(userbook);
-                return null;
+                return RedirectToAction("Product", new { BookID = idbook, category = "Computer" });
             }
             else
             {

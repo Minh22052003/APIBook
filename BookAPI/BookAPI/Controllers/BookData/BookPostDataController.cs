@@ -43,6 +43,11 @@ namespace BookAPI.Controllers.BookData
             FavoriteBook favoriteBook = new FavoriteBook();
             favoriteBook.BookID = userbookPost.BookID;
             favoriteBook.UserID = userbookPost.UserID;
+            var favorite = _context.FavoriteBooks.FirstOrDefault(r => r.UserID == userbookPost.UserID && r.BookID == userbookPost.BookID);
+            if (favorite != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, favoriteBook);
+            }
             _context.FavoriteBooks.Add(favoriteBook);
             _context.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK, favoriteBook);
