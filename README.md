@@ -1,0 +1,1 @@
+Dư án về 1 web đọc sách, dữ liệu được lưu trữ và cung cấp bởi web BookAPi. Trang web cho khách hàng MyBook cung cấp các dịch vụ đăng nhập, đăng kí, thêm, sửa, xóa danh sách yêu thích, đánh giá sách, check lịch sử đọc và vài dịch vụ khác đang phát triển
